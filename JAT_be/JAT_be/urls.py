@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/' , include('rest_framework.urls')),
     path('users/', include('apps.accounts.urls') ), 
-    path('jobs/', include('apps.jobs.urls'))
+    path('jobs/', include('apps.jobs.urls')),
+    path('applis/',include('apps.applications.urls'))
 ]
