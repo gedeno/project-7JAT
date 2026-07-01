@@ -16,6 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from rest_framework_simplejwt.views import(
+    TokenobtainPairView,
+    TokenRefreshView,
+)
 import rest_framework
 
 
@@ -24,5 +28,7 @@ urlpatterns = [
     path('auth/' , include('rest_framework.urls')),
     path('users/', include('apps.accounts.urls') ), 
     path('jobs/', include('apps.jobs.urls')),
-    path('applis/',include('apps.applications.urls'))
+    path('applis/',include('apps.applications.urls')),
+    path('api/token/',TokenobtainPairView.as_view(), name= 'token_obtain_pair'),
+    path('api/token/refresh/' , TokenRefreshView.as_view())
 ]

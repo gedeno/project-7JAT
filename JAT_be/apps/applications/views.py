@@ -8,10 +8,12 @@ from rest_framework.permissions import AllowAny , IsAuthenticated
 
 
 class GetMyApplicationsAPIView(generics.ListAPIView):
+    queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
     permission_classes = [IsAuthenticated]
     def get_queryset(self):
-        return Application.objects.filter(user=self.request.user)
+        print(Application.objects.filter(applier=self.request.user.id))
+        return Application.objects.filter(applier=self.request.user.id)
 
 class CreateApplictaionApiView(generics.ListCreateAPIView):
     queryset = Application.objects.all()
