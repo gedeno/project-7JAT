@@ -10,7 +10,8 @@ function App() {
   return (
     <>
     <BrowserRouter>
-    <Routes>
+    <Routes> 
+      <Route/>
       <Route path='/joblist' element = {<Joblist/>} />
       <Route path='/login' element = {<LoglinPage/>} />
       <Route path='/home' element = {<Home/>} />

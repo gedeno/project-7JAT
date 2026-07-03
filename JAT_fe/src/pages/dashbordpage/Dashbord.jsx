@@ -29,4 +29,12 @@ export const Dashbord = () => {
             navigate('/home')
         })
     }
+    return(
+        <>
+        <form action="">
+            <label htmlFor="">title:</label>
+            <input type="text" name="title" id="" /> <br />
+        </form>
+        </>
+    )
 }
