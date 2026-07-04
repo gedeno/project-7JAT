@@ -15,7 +15,7 @@ export const Dashbord = () => {
 
     const submithandler = (e) => {
         e.preventDefault()
-        const formD = new.FormData()
+        const formD = new FormData()
         formD.append('title',formdata.title)
         formD.append('description',formdata.description)
         formD.append('requirement',formdata.requirement)
@@ -31,9 +31,23 @@ export const Dashbord = () => {
     }
     return(
         <>
-        <form action="">
+        <h1>post jobs</h1>
+        <form action="" onSubmit={submithandler}>
             <label htmlFor="">title:</label>
-            <input type="text" name="title" id="" /> <br />
+            <input onChange={inputhandler} type="text" name="title" id="" /> <br />
+            <label htmlFor="">description :</label>
+            <input onChange={inputhandler} type="text" name="discription" placeholder="discription" /> <br />
+            <label htmlFor="">requirement :</label>
+            <input onChange={inputhandler} type="text" name="requirement" /> <br />
+            <label htmlFor="">responsibilty :</label>
+            <input onChange={inputhandler} type="text" name="responsibilty" id="" /> <br />
+            <label htmlFor="">salary :</label>
+            <input onChange={inputhandler} type="text" name="salary" /> <br />
+            <label htmlFor="">job type :</label>
+            <input onChange={inputhandler} type="text" name="job_type" id="" /> <br />
+            <label htmlFor="">Employment :</label>
+            <input onChange={inputhandler} type="text" name="Employment" id="" /> <br />
+            <button type="submit" >submit</button>
         </form>
         </>
     )

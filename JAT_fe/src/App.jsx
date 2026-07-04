@@ -4,6 +4,7 @@ import Regiserpage from './pages/auth/Registerpage'
 import { Home } from './pages/jobs/home'
 import { LoglinPage } from './pages/auth/Login'
 import { Joblist } from './pages/jobs/jobs'
+import { Dashbord } from './pages/dashbordpage/Dashbord'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -11,7 +12,7 @@ function App() {
     <>
     <BrowserRouter>
     <Routes> 
-      <Route/>
+      <Route path='/dashbord' element = {<Dashbord/>} />
       <Route path='/joblist' element = {<Joblist/>} />
       <Route path='/login' element = {<LoglinPage/>} />
       <Route path='/home' element = {<Home/>} />
