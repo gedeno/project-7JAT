@@ -13,7 +13,7 @@ export const Joblist = () =>{
     },[])
     return(
         <>
-        <h1>ellow world</h1>
+        <h1>Hellow world</h1>
         {
             Jobs.map((item)=>(
                 <div key={item.id}>
