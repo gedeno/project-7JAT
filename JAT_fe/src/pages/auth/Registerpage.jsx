@@ -1,7 +1,7 @@
 import { use, useState } from "react";
 import api from "./api";
 import axios from "axios";
-import {Navigate , useNavigate} from 'react-router-dom'
+import {Navigate , useNavigate , Link} from 'react-router-dom'
 export default function Regiserpage(){
     const [formdata , setformdata ] = useState({})
     
@@ -26,7 +26,9 @@ export default function Regiserpage(){
     return(
         <>
         <h1>WELLCOME TO REGISTER PAGE</h1>
-        <form action="" onSubmit={fromsubmithandler}>
+        <h2 className="mb-2 text-2xl font-bold">create account</h2>
+        <p className="mb-8 text-sm text-slate-500" >Join thousands of professionals today</p>
+        <form className="space-y-5" onSubmit={fromsubmithandler}>
             <label htmlFor="">username :</label>
             <input name="username" onChange={inputChangehandler} type="text"  placeholder="username"/><br />
             <label htmlFor="">emali :</label>
