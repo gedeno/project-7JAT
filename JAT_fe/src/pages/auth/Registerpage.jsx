@@ -4,7 +4,9 @@ import api from "./api";
 import axios from "axios";
 import {Navigate , useNavigate , Link} from 'react-router-dom'
 import { Input } from "../ui/input";
+import { Button } from "../ui/Button";
 export default function Regiserpage(){
+    const [loading,setLoding] = useState({})
     const [formdata , setformdata ] = useState({})
     
     const inputChangehandler = (e) =>{
@@ -34,8 +36,8 @@ export default function Regiserpage(){
             <Input name="username"  onChange={inputChangehandler} type="text"  placeholder="username"/><br />
             <Input name="email" type="email" onChange={inputChangehandler} placeholder="email ..." /><br />
             <Input name="password" onChange={inputChangehandler} type="password" placeholder="password"/><br />
-            <button type="submit" className="w-full">create Account</button>
-            
+            <Button type="submit" className="w-full">create Account</Button>
+            <Link to= "/login" className="font-medium text-brand-600 hover:underline"  >Sign in</Link>
             
         </form>
         </div>
