@@ -1,7 +1,9 @@
 import { use, useState } from "react";
+import { FiUser ,FiLock } from "react-icons/fi";
 import api from "./api";
 import axios from "axios";
 import {Navigate , useNavigate , Link} from 'react-router-dom'
+import { Input } from "../ui/input";
 export default function Regiserpage(){
     const [formdata , setformdata ] = useState({})
     
@@ -24,19 +26,18 @@ export default function Regiserpage(){
         })
     }
     return(
-        <>
-        <h1>WELLCOME TO REGISTER PAGE</h1>
+        <div>
+    
         <h2 className="mb-2 text-2xl font-bold">create account</h2>
         <p className="mb-8 text-sm text-slate-500" >Join thousands of professionals today</p>
-        <form className="space-y-5" onSubmit={fromsubmithandler}>
-            <label htmlFor="">username :</label>
-            <input name="username" onChange={inputChangehandler} type="text"  placeholder="username"/><br />
-            <label htmlFor="">emali :</label>
-            <input name="email" type="email" onChange={inputChangehandler} placeholder="email ..." /><br />
-            <label htmlFor="">password :</label>
-            <input name="password" onChange={inputChangehandler} type="password" placeholder="password"/><br />
-            <button type="submit">submit</button>
+        <form className="space-y-5" onSubmit={fromsubmithandler} >
+            <Input name="username"  onChange={inputChangehandler} type="text"  placeholder="username"/><br />
+            <Input name="email" type="email" onChange={inputChangehandler} placeholder="email ..." /><br />
+            <Input name="password" onChange={inputChangehandler} type="password" placeholder="password"/><br />
+            <button type="submit" className="w-full">create Account</button>
+            
+            
         </form>
-        </>
+        </div>
     )
 }
