@@ -1,8 +1,12 @@
 import { space } from "postcss/lib/list";
 import { Children } from "react";
 const variants = {
-    primary :'bg-brand-600 text-white hover:bg-brand-700 shadow-md shadow-brand-600/25 ',
-    secondary : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+    primary: 'bg-brand-600 text-white hover:bg-brand-700 shadow-md shadow-brand-600/25',
+  secondary: 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700',
+  outline: 'border-2 border-brand-600 text-brand-600 hover:bg-brand-50 dark:hover:bg-brand-600/10',
+  ghost: 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800',
+  danger: 'bg-red-600 text-white hover:bg-red-700',
+  success: 'bg-emerald-600 text-white hover:bg-emerald-700',
 };
 const sizes ={
     sm:'px-3 py-1.5 text-sm',
@@ -21,7 +25,9 @@ export const Button = ({
     ...props
 }) => (
     <button className= {`inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-offset-slate-900 ${variants[variant]} ${sizes[size]} ${className}`}
-     {...props}>
+     disabled = {disabled || loading}
+    {...props}
+     >
         {loading ? (<span className="h-4 w-4 animate-spain rounded-full border-current border-t-transparent" />): Icon ? (
             <Icon className = "h-4 w-4" />
         ):null}
