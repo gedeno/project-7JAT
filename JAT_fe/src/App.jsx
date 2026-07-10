@@ -7,6 +7,7 @@ import { Joblist } from './pages/jobs/jobs'
 import { Dashbord } from './pages/dashbordpage/Dashbord'
 import { Sidebar } from './pages/ui/Sidebar'
 import { Navbar } from './pages/ui/Navbar'
+import { MainLayout } from './pages/layout/MainLayout'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,8 +26,9 @@ function App() {
   return (
     <>
     <BrowserRouter>
-    <Sidebar/>
-    <Navbar/>
+    
+    <MainLayout/>
+  
     <Routes> 
       <Route path='/dashbord' element = {<Dashbord/>} />
       <Route path='/joblist' element = {<Joblist/>} />
