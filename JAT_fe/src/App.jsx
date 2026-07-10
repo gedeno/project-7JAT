@@ -1,16 +1,32 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { BrowserRouter ,Route ,Routes } from 'react-router-dom'
 import Regiserpage from './pages/auth/Registerpage'
 import { Home } from './pages/jobs/home'
 import { LoglinPage } from './pages/auth/Login'
 import { Joblist } from './pages/jobs/jobs'
 import { Dashbord } from './pages/dashbordpage/Dashbord'
+import { Sidebar } from './pages/ui/Sidebar'
+import { Navbar } from './pages/ui/Navbar'
+
 function App() {
   const [count, setCount] = useState(0)
-
+  localStorage.setItem('theme', 'dark');
+  window.matchMedia('(prefers-color-scheme: dark)').matches;
+  useEffect(() => {
+    const root = document.documentElement;
+    if (true) {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, []);
   return (
     <>
     <BrowserRouter>
+    <Sidebar/>
+    <Navbar/>
     <Routes> 
       <Route path='/dashbord' element = {<Dashbord/>} />
       <Route path='/joblist' element = {<Joblist/>} />
