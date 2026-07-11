@@ -17,18 +17,22 @@ const NavItems =  [
     ]
 
  
-export const Sidebar = () =>{
-    const [isopen , setIsopen] = useState(true)
+export const Sidebar = ({isOpen, onClose}) =>{
     return (
       <>
-        {isopen && <div></div>}
+        {isOpen && (<div className="fixed inset-0 z-30 bg-black/50 lg:hidden " onClick={onClose}/>)}
         <aside
-          className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transform transtion-transform duration-300 lg:translate-x-0 ${isopen ? "translate-x-0" : "-translate-x-full"}`}
+          className={`fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transform transtion-transform duration-300 lg:translate-x-0
+             ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
         >
           <div className="flex flex-col h-full pt-4 lg:pt-6">
             <nav className="flex-1 px-3 space-y-1 ">
               {NavItems.map(({ label, icon: Icon }) => (
-                <NavLink className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors taxt-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 ">
+                <NavLink className= {({isActive}) =>`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors 
+                ${isActive
+                  ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400'
+                  : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800'
+                }`} >
                   <Icon size={20} />
                   {label}
                 </NavLink>
