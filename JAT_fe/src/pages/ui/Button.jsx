@@ -1,36 +1,40 @@
 import { space } from "postcss/lib/list";
 import { Children } from "react";
 const variants = {
-    primary: 'bg-brand-600 text-white hover:bg-brand-700 shadow-md shadow-brand-600/25',
-  secondary: 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700',
-  outline: 'border-2 border-brand-600 text-brand-600 hover:bg-brand-50 dark:hover:bg-brand-600/10',
-  ghost: 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800',
-  danger: 'bg-red-600 text-white hover:bg-red-700',
-  success: 'bg-emerald-600 text-white hover:bg-emerald-700',
+  primary: 'bg-primary-600 hover:bg-primary-700 text-white shadow-sm shadow-primary-600/20',
+  secondary: 'bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-gray-100',
+  outline: 'border-2 border-primary-600 text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/20',
+  danger: 'bg-red-600 hover:bg-red-700 text-white',
+  ghost: 'text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800',
 };
-const sizes ={
-    sm:'px-3 py-1.5 text-sm',
-    md:'px-4',
-    lg:'px-6 py-3 text-base'
-}
+
+const sizes = {
+  sm: 'px-3 py-1.5 text-sm',
+  md: 'px-4 py-2 text-sm',
+  lg: 'px-6 py-3 text-base',
+};
+
 
 export const Button = ({
     children,
-    variant = 'primary',
-    size = 'md',
-    className = '',
-    loading = false,
-    disabled = false,
-    icon : Icon,
-    ...props
-}) => (
-    <button className= {`inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-offset-slate-900 ${variants[variant]} ${sizes[size]} ${className}`}
-     disabled = {disabled || loading}
-    {...props}
-     >
-        {loading ? (<span className="h-4 w-4 animate-spain rounded-full border-current border-t-transparent" />): Icon ? (
-            <Icon className = "h-4 w-4" />
-        ):null}
-        {children}
+  variant = 'primary',
+  size = 'md',
+  type = 'button',
+  disabled = false,
+  className = '',
+  onClick,
+  ...props
+}) => {
+    return(
+    <button
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+      className={`inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed ${variants[variant]} ${sizes[size]} ${className}`}
+      {...props}
+    >
+      {children}
     </button>
-)
+    )
+    
+}

@@ -8,6 +8,8 @@ import { Dashbord } from './pages/dashbordpage/Dashbord'
 import { Sidebar } from './pages/ui/Sidebar'
 import { Navbar } from './pages/ui/Navbar'
 import { MainLayout } from './pages/layout/MainLayout'
+import { Button } from './pages/ui/Button'
+import { JobCard } from './pages/ui/JobCard'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,8 +29,8 @@ function App() {
     <>
     <BrowserRouter>
     
-    <MainLayout/>
-  
+   
+    <JobCard/>
     <Routes> 
       <Route path='/dashbord' element = {<Dashbord/>} />
       <Route path='/joblist' element = {<Joblist/>} />
