@@ -5,9 +5,10 @@ from rest_framework.generics import ListAPIView , ListCreateAPIView , RetrieveUp
 from .models import CustomUserManager , User
 from .serializer import UserSerializer 
 from rest_framework.permissions import IsAuthenticated ,AllowAny
+from rest_framework.viewsets import ModelViewSet
 # Create your views here.
 
-class CreateUserApiView(ListCreateAPIView):
+class CreateUserApiView(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
