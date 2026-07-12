@@ -25,4 +25,5 @@ class Job(models.Model):
     salary = models.CharField(max_length=300)
     job_type = models.CharField(max_length=200 ,choices=JOB_CHOOSE)
     Employment = models.CharField(max_length=200 , choices=EMPLOYMENT_CHOOSE )
+    location = models.CharField(max_length=300)
 
