@@ -12,6 +12,7 @@ import { Button } from './pages/ui/Button'
 import { JobCard } from './pages/ui/JobCard'
 import { Input } from './pages/ui/input'
 import { Modal } from './pages/ui/Modal'
+import { Loader } from './pages/ui/Loader'
 
 function App() {
   const [count, setCount] = useState(0)
