@@ -11,6 +11,7 @@ import { MainLayout } from './pages/layout/MainLayout'
 import { Button } from './pages/ui/Button'
 import { JobCard } from './pages/ui/JobCard'
 import { Input } from './pages/ui/input'
+import { Modal } from './pages/ui/Modal'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -31,7 +32,7 @@ function App() {
     <BrowserRouter>
     
    
-    <MainLayout/>
+    
     <Routes> 
       <Route path='/dashbord' element = {<Dashbord/>} />
       <Route path='/joblist' element = {<Joblist/>} />
