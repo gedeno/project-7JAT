@@ -9,10 +9,7 @@ import { Sidebar } from './pages/ui/Sidebar'
 import { Navbar } from './pages/ui/Navbar'
 import { MainLayout } from './pages/layout/MainLayout'
 import { Button } from './pages/ui/Button'
-import { JobCard } from './pages/ui/JobCard'
-import { Input } from './pages/ui/input'
-import { Modal } from './pages/ui/Modal'
-import { Loader } from './pages/ui/Loader'
+import { JOblist } from './pages/jobs/JobList'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -33,7 +30,7 @@ function App() {
     <BrowserRouter>
     
    
-    
+    <JOblist/>
     <Routes> 
       <Route path='/dashbord' element = {<Dashbord/>} />
       <Route path='/joblist' element = {<Joblist/>} />
