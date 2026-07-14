@@ -1,18 +1,33 @@
 import { HiOutlineSearch, HiOutlineFilter } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import { JobCard } from "../ui/JobCard";
 import { Input } from "../ui/input";
 import { Button } from "../ui/Button";
 import { Modal } from "../ui/Modal";
 import { Loader } from "../ui/Loader";
+import api from "../auth/api";
 export const JOblist =() => {
-   
     const loading = false
-    
-
     const [showfilter, setshowfilter] = useState(false)
     const [showcreatemodal ,setshowcreatemodal] = useState(false)
+
+    const [formdata, setformdata ] =useState({})
+  
+
+    const inputchangehandler =(e) =>{
+      setformdata({
+        ...formdata,
+        [e.target.name]:e.target.value
+      })
+    }
+
+    const formsubmithandler = (e) =>{
+      api.post('/jobs/job/',formdata)
+      .then((res)=>{
+        console.log(res.data)
+      })
+    }
 
     
 
@@ -114,38 +129,38 @@ export const JOblist =() => {
           </div>
         )}
         <Modal isOpen={showcreatemodal} onClose={()=>setshowcreatemodal(false)} title= 'post a New job' >
-          <form action="">
+          <form onSubmit={formsubmithandler} action="">
             <div>
-              <Input lable="Job title" />
-              <Input lable="company" />
+              <Input name= 'title' onChange={inputchangehandler} lable="Job title" />
+              <Input name='company' onChange={inputchangehandler} lable="company" />
             </div>
-            <Input lable="discription" />
+            <Input name= 'description' onChange={inputchangehandler} lable="discription" />
             <div>
-              <Input lable="salary" />
-              <Input lable="location" />
+              <Input name='salary' onChange={inputchangehandler} lable="salary" />
+              <Input name='location' onChange={inputchangehandler} lable="location" />
             </div>
             <div>
               <div>
                 <label htmlFor="">Job type</label>
-                <select name="" id="">
+                <select name = "job_type" id="" onChange={inputchangehandler}>
                   {Job_types.map((t) => (
                     <option>{t}</option>
                   ))}
                 </select>
               </div>
               <div>
-                <label htmlFor="">Employment type</label>
-                <select name="" id="">
+                <label  htmlFor="">Employment type</label>
+                <select name="Employment_type" onChange={inputchangehandler} id="">
                   {Employment_type.map((t) => (
-                    <option value="">{t}</option>
+                    <option>{t}</option>
                   ))}
                 </select>
               </div>
-              <Input lable="Deadline" />
+              <Input name= 'deadline' onChange={inputchangehandler} type="date" lable="Deadline" />
             </div>
             <div>
               <Button onClick={() => setshowcreatemodal(false)}>Cancel</Button>
-              <Button></Button>
+              <Button type="submit">post</Button>
             </div>
           </form>
         </Modal>

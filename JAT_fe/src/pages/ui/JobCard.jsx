@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { HiOutlineLocationMarker , HiOutlineClock ,HiOutlineCurrencyDollar } from "react-icons/hi";
 import {MdWorkOutline} from 'react-icons/md'
-import { Button } from "./Button";
+import { Button } from "./Button"
+import api from "../auth/api";
 const JobTypeColors = {
         Remote:'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
         Onsite: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
