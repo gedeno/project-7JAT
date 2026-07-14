@@ -12,7 +12,7 @@ export const Modal = ({children , size = 'md' ,title ,onClose , isOpen }) => {
     }
     return(
         <div className='fixed inset-0 z-50 flex items-center justify-center p-4 '>
-            <div className='fixed inset-0 bg-black/50 backdrop-blur-' onClick={onClose} />
+            <div className='fixed inset-0 bg-black/50 backdrop-blur-sm' onClick={onClose} />
             <div className={`relative w-full ${sizeClasses[size]} bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 animate-in`}>
                 <div className='flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-800'>
                     <h2 className='text-lg font-semibold text-gray-900 dark:text-white'>{title}</h2>

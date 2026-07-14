@@ -128,37 +128,37 @@ export const JOblist =() => {
             <JobCard />
           </div>
         )}
-        <Modal isOpen={showcreatemodal} onClose={()=>setshowcreatemodal(false)} title= 'post a New job' >
-          <form onSubmit={formsubmithandler} action="">
-            <div>
-              <Input name= 'title' onChange={inputchangehandler} lable="Job title" />
-              <Input name='company' onChange={inputchangehandler} lable="company" />
+        <Modal isOpen={showcreatemodal} onClose={()=>setshowcreatemodal(false)} title= 'post a New job' size="lg" >
+          <form onSubmit={formsubmithandler} className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Input required name= 'title' onChange={inputchangehandler} lable="Job title" />
+              <Input required  name='company' onChange={inputchangehandler} lable="company" />
             </div>
-            <Input name= 'description' onChange={inputchangehandler} lable="discription" />
-            <div>
-              <Input name='salary' onChange={inputchangehandler} lable="salary" />
-              <Input name='location' onChange={inputchangehandler} lable="location" />
+            <Input required  name= 'description' onChange={inputchangehandler} lable="discription" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Input required  name='salary' onChange={inputchangehandler} lable="salary" />
+              <Input required  name='location' onChange={inputchangehandler} lable="location" />
             </div>
-            <div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label htmlFor="">Job type</label>
-                <select name = "job_type" id="" onChange={inputchangehandler}>
+                <label  className="bloack text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Job type</label>
+                <select name = "job_type" id="" onChange={inputchangehandler} className="w-full rounded-lg border border-gray-300 dark:border-gray-700 px-3 py-2.5 text-sm">
                   {Job_types.map((t) => (
                     <option>{t}</option>
                   ))}
                 </select>
               </div>
               <div>
-                <label  htmlFor="">Employment type</label>
-                <select name="Employment_type" onChange={inputchangehandler} id="">
+                <label  className=" block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Employment type</label>
+                <select name="Employment_type" onChange={inputchangehandler} id="" className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2.5 text-sm ">
                   {Employment_type.map((t) => (
                     <option>{t}</option>
                   ))}
                 </select>
               </div>
-              <Input name= 'deadline' onChange={inputchangehandler} type="date" lable="Deadline" />
+              <Input required  name= 'deadline' onChange={inputchangehandler} type="date" lable="Deadline" />
             </div>
-            <div>
+            <div className="flex justify-end gap-3 pt-2">
               <Button onClick={() => setshowcreatemodal(false)}>Cancel</Button>
               <Button type="submit">post</Button>
             </div>
