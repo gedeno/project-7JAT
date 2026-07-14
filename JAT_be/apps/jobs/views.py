@@ -12,7 +12,16 @@ class CreateJobApiView(ListCreateAPIView):
     serializer_class = Jobserializer
     permission_classes = [IsAuthenticated]
     def perform_create(self, serializer):
-        if serializer.is_valid():
-            serializer.save(poster = self.request.user)
+        serializer.save(poster = self.request.user)
+
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+    
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        serializer = Jobserializer(data = request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        return Response({'work':'done'})
 
 
