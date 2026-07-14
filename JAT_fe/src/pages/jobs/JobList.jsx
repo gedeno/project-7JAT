@@ -51,7 +51,7 @@ export const JOblist =() => {
             </Button>
           </div>
           {showfilter && (
-            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-800 grid grid-cols-1 sm:grid-col3 gap-3">
+            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-800 grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div>
                 <label
                   className="block text-xs font-medium text-gray-500 mb-1"
@@ -61,7 +61,7 @@ export const JOblist =() => {
                 <select
                   name=""
                   id=""
-                  className="w-full rounded-lg border border-gray-300 dark:border-border-gray bg-gray-900 px-3 py-2 text-sm"
+                  className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm"
                 >
                   <option value="">All Types</option>
                   {Job_types.map((t) => (
@@ -75,7 +75,7 @@ export const JOblist =() => {
                 </label>
                 <select
                   name=""
-                  className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-2 text-sm"
+                  className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm"
                 >
                   <option value="">All Employment</option>
                   {Employment_type.map((t) => (
@@ -113,7 +113,7 @@ export const JOblist =() => {
             <JobCard />
           </div>
         )}
-        <Modal isOpen={showcreatemodal} onClose={() => setshowcreatemodal(false)} title= 'post a New job' >
+        <Modal isOpen={showcreatemodal} onClose={()=>setshowcreatemodal(false)} title= 'post a New job' >
           <form action="">
             <div>
               <Input lable="Job title" />

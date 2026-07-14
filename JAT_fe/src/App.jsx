@@ -3,7 +3,6 @@ import { BrowserRouter ,Route ,Routes } from 'react-router-dom'
 import Regiserpage from './pages/auth/Registerpage'
 import { Home } from './pages/jobs/home'
 import { LoglinPage } from './pages/auth/Login'
-import { Joblist } from './pages/jobs/jobs'
 import { Dashbord } from './pages/dashbordpage/Dashbord'
 import { Sidebar } from './pages/ui/Sidebar'
 import { Navbar } from './pages/ui/Navbar'
@@ -28,15 +27,16 @@ function App() {
   return (
     <>
     <BrowserRouter>
-    
-   
-    <JOblist/>
     <Routes> 
-      <Route path='/dashbord' element = {<Dashbord/>} />
-      <Route path='/joblist' element = {<Joblist/>} />
       <Route path='/login' element = {<LoglinPage/>} />
-      <Route path='/home' element = {<Home/>} />
       <Route path='/register' element = {<Regiserpage/>}/>
+      <Route element={<MainLayout/>}>
+        <Route path='/dashbord' element = {<Dashbord/>} />
+        <Route path='/joblist' element = {<JOblist/>} />
+        
+        <Route path='/home' element = {<Home/>} />
+        
+      </Route>
     </Routes>
     </BrowserRouter>
     </>
