@@ -1,3 +1,6 @@
+from ast import Tuple
+from re import U
+
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, UserManager, AbstractUser
 
@@ -22,6 +25,8 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(username, password, **extra_fields)
     
 class User(AbstractBaseUser):
+    first_name = models.CharField(max_length=150 , unique=True)
+    last_name = models.CharField(max_length=200 , unique=True)
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(blank=False, null=False, unique=True)
 

@@ -3,7 +3,8 @@ import { FiUser ,FiLock } from "react-icons/fi";
 import api from "./api";
 import axios from "axios";
 import {Navigate , useNavigate , Link} from 'react-router-dom'
-
+import { HiOutlineSun ,HiOutlineMoon } from "react-icons/hi";
+import { Input } from "../ui/input";
 import { Button } from "../ui/Button";
 export default function Regiserpage(){
     const [loading,setLoding] = useState({})
@@ -28,18 +29,41 @@ export default function Regiserpage(){
         })
     }
     return(
-        <div>
-    
-        <h2 className="mb-2 text-2xl font-bold">create account</h2>
-        <p className="mb-8 text-sm text-slate-500" >Join thousands of professionals today</p>
-        <form className="space-y-5" onSubmit={fromsubmithandler} >
-            <input name="username"  onChange={inputChangehandler} type="text"  placeholder="username"/><br />
-            <input name="email" type="email" onChange={inputChangehandler} placeholder="email ..." /><br />
-            <input name="password" onChange={inputChangehandler} type="password" placeholder="password"/><br />
-            <Button type="submit" className="w-full">create Account</Button>
-            <Link to= "/login" className="font-medium text-brand-600 hover:underline"  >Sign in</Link>
-            
-        </form>
+        <div className="min-h-screen flex items-center justify-center p-6 bg-gray-50 dark:bg-gray-950">
+            <div className="w-full max-w-lg">
+                <div className="flex justify-between items-center mb-8">
+                    <Link className="flex items-center gap-2">
+                        <div className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center">
+                            <span className="text-2xl font-bold text-gray-900 dark:text-white">A</span>
+                        </div>
+                        <span className="text-2xl font-bold text-gray-900 dark:text-white">ASTU</span>
+                    </Link>
+                    <button className="p-2 rounded-lg text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-800">
+                        <HiOutlineSun size={20}/>
+                    </button>
+                </div>
+
+                <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 shadow-sm">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1 ">Create account</h2>
+                    <p className="text-gray-500 dark:text-gray-400 mb-6">
+                        Already have an account
+                        <Link className="text-primary-600 hover:text-primary-700 font-medium"> Sign in</Link>
+                    </p>
+                    <form onSubmit={fromsubmithandler} className="space-y-4">
+                        <div className="grid grid-cols-2 gap-4">
+                            <Input name="first_name" onChange={inputChangehandler} required lable= 'First Name'/>
+                            <Input name= "last_name" onChange={inputChangehandler} required lable="Last Name"/>
+                        </div>
+                        <Input name='username' onChange={inputChangehandler} required lable="Username"/>
+                        <Input name='email' onChange={inputChangehandler} required lable="Email"/>
+                        <Input name='password' onChange={inputChangehandler} required lable='password'/>
+                        
+                        <Button className="w-full" size="lg">
+                            Create Account
+                        </Button>
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }

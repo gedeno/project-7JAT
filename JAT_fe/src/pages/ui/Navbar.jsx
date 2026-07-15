@@ -3,6 +3,7 @@ import { IoLogOutOutline } from 'react-icons/io5'
 import { HiOutlineSun ,HiOutlineMoon ,HiOutlineBell } from 'react-icons/hi'
 import api from '../auth/api'
 import { useState ,useEffect } from 'react'
+import {jwtDecode} from 'jwt-decode'
 export const Navbar = ({onMenuToggle}) => {
   const [getdata , setgetdata ] = useState([])
   useEffect(()=>{
@@ -12,8 +13,19 @@ export const Navbar = ({onMenuToggle}) => {
       console.log(res.data)
     })
   },[])
-  
 
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    const token = localStorage.getItem('access')
+    const decoded = jwtDecode(token)
+    const id = decoded.user_id
+    api.get(`/users/user/${id}`)
+      .then((res) => {
+        setUser(res.data);
+      });
+  }, []);
+  
+  const userF =user?.username?.[0]
     return (
       <header className="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80  backdrop-blur-md  border-b border-gray-200 dark:border-gray-800" >
         <div className='flex items-center justify-between h-16 px-4 lg:px-6'>
@@ -37,10 +49,10 @@ export const Navbar = ({onMenuToggle}) => {
             </button>
             <Link className='hidden sm:flex  items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'>
               <div className='h-8 w-8 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center '>
-                <span className='text-primary-700 dark: text-primary-300 text-xl font-bold '>G</span>
+                <span className='text-primary-700 dark: text-primary-300 text-xl font-bold'>{userF}</span>
               </div>
               <div className='text-left '>
-                <p className='text-sm font-medium text-gray-900 dark:text-white'>Gedish</p>
+                <p className='text-sm font-medium text-gray-900 dark:text-white'>{user.username}</p>
                 <p className='text-xs text-gray-500 capitalize '>User</p>
               </div>
             </Link>

@@ -8,7 +8,7 @@ import {jwtDecode} from 'jwt-decode'
 
 
 export const Home = () => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const token = localStorage.getItem('access')
@@ -16,14 +16,12 @@ export const Home = () => {
     const id = decoded.user_id
     api.get(`/users/user/${id}`)
       .then((res) => {
-        console.log(res.data);
         setUser(res.data);
       });
   }, []);
-
   return (
     <>
-      <h1></h1>
+      <h1>Name: {user.username}</h1>
       <h1>Hello world</h1>
     </>
   );
