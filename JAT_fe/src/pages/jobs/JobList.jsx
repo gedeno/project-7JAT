@@ -13,7 +13,7 @@ export const JOblist =() => {
     const [showcreatemodal ,setshowcreatemodal] = useState(false)
 
     const [formdata, setformdata ] =useState({})
-  
+    const [getdata ,setgetdata ] = useState([])
 
     const inputchangehandler =(e) =>{
       setformdata({
@@ -28,9 +28,15 @@ export const JOblist =() => {
         console.log(res.data)
       })
     }
+    useEffect(()=>{
+      api.get('/jobs/job/')
+      .then((res)=>{
+        setgetdata(res.data)
+        console.log(res.data)
+      })
+    },[])
 
     
-
 
     const jobs = 1
     const Job_types = ['Remote' , 'On-site', 'Hybrid']
@@ -125,7 +131,10 @@ export const JOblist =() => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            <JobCard />
+            
+            {getdata.map((item) => (
+              <JobCard item={item} />
+            ))}
           </div>
         )}
         <Modal isOpen={showcreatemodal} onClose={()=>setshowcreatemodal(false)} title= 'post a New job' size="lg" >

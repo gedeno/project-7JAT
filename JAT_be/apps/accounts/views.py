@@ -16,3 +16,7 @@ class CreateUserApiView(ModelViewSet):
     def post(self, request, *args, **kwargs):
         print(request.data)
         return super().post(request, *args, **kwargs)
+    def get(self, request):
+        return Response({
+            "username": request.user.username,
+        })

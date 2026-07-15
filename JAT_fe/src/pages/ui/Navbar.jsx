@@ -1,7 +1,19 @@
 import {NavLink ,Link} from 'react-router-dom'
 import { IoLogOutOutline } from 'react-icons/io5'
 import { HiOutlineSun ,HiOutlineMoon ,HiOutlineBell } from 'react-icons/hi'
+import api from '../auth/api'
+import { useState ,useEffect } from 'react'
 export const Navbar = ({onMenuToggle}) => {
+  const [getdata , setgetdata ] = useState([])
+  useEffect(()=>{
+    api.get('/jobs/job/')
+    .then((res) =>{
+      setgetdata(res.data)
+      console.log(res.data)
+    })
+  },[])
+  
+
     return (
       <header className="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80  backdrop-blur-md  border-b border-gray-200 dark:border-gray-800" >
         <div className='flex items-center justify-between h-16 px-4 lg:px-6'>
