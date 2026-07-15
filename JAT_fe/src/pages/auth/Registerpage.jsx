@@ -47,7 +47,7 @@ export default function Regiserpage(){
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1 ">Create account</h2>
                     <p className="text-gray-500 dark:text-gray-400 mb-6">
                         Already have an account
-                        <Link className="text-primary-600 hover:text-primary-700 font-medium"> Sign in</Link>
+                        <Link className="text-primary-600 hover:text-primary-700 font-medium" to="/login"> Sign in</Link>
                     </p>
                     <form onSubmit={fromsubmithandler} className="space-y-4">
                         <div className="grid grid-cols-2 gap-4">
@@ -57,8 +57,7 @@ export default function Regiserpage(){
                         <Input name='username' onChange={inputChangehandler} required lable="Username"/>
                         <Input name='email' onChange={inputChangehandler} required lable="Email"/>
                         <Input name='password' onChange={inputChangehandler} required lable='password'/>
-                        
-                        <Button className="w-full" size="lg">
+                        <Button className="w-full" size="lg" type="submit">
                             Create Account
                         </Button>
                     </form>

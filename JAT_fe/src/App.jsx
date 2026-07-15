@@ -9,6 +9,7 @@ import { Navbar } from './pages/ui/Navbar'
 import { MainLayout } from './pages/layout/MainLayout'
 import { Button } from './pages/ui/Button'
 import { JOblist } from './pages/jobs/JobList'
+import { Apply } from './pages/jobs/Apply'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,6 +28,7 @@ function App() {
   return (
     <>
     <BrowserRouter>
+    <Apply/>
     <Routes> 
       <Route path='/login' element = {<LoglinPage/>} />
       <Route path='/register' element = {<Regiserpage/>}/>
