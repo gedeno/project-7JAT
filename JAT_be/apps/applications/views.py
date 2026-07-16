@@ -21,7 +21,7 @@ class CreateApplictaionApiView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     def get_job(self):
         return Job.objects.get(id = self.kwargs['pk'])
+        
     def perform_create(self, serializer):
         if serializer.is_valid():
             serializer.save(applier = self.request.user ,job =self.get_job())
-            
