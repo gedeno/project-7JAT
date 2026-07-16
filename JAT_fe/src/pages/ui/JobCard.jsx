@@ -59,7 +59,7 @@ export const JobCard = ({item}) => {
           <Link className="flex-1">
             <Button variant="outline" className="w-full" size="sm">View Details</Button>
           </Link>
-          <Button  size="sm" className="flex-1" >Apply Now</Button>
+          <Button  size="sm" className="flex-1" > <Link to={`/joblist/${item.id}`} > Apply Now </Link></Button>
         </div>
       </div>
     );

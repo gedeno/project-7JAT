@@ -24,13 +24,13 @@ export const Apply = () => {
             [e.target.name] : file
         })
     }
-    const formsubmithandler = () => {
+    const formsubmithandler = (e) => {
         const Fd = new FormData()
         Fd.append('cover_letter',formdata.cover_letter)
         Fd.append('portfolio_link',formdata.portfolio_link)
         Fd.append('github_link',formdata.github_link)
         Fd.append('cv_resume',formdata.cv_resume)
-        api.post(`/applis/apply/ ${id}`,Fd)
+        api.post(`/applis/applic/${id}/`,Fd)
         .then((res)=>{
             console.log(res.data)
         })
@@ -47,16 +47,17 @@ export const Apply = () => {
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Apply for Position</h1>
           <p className="text-gray-500 dark:text-gray-400 mb-6">backend developer at ASTU</p>
 
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={formsubmithandler}>
             <Input
+              onChange={inputhandler}
               required
               name='cover_letter'
               lable="Cover Letter"
               type="textarea"
               placeholder="Tell the employer why to you're a great fit for this role ..."
             />
-            <Input name="portfolio_link" lable="portfolio link" type="url" />
-            <Input name="github_link" lable= "github link" type="text" name="" id="" />
+            <Input onChange={inputhandler} name="portfolio_link" lable="portfolio link" type="url" />
+            <Input onChange={inputhandler}t name="github_link" lable= "github link" type="url" name="" id="" />
             <div className="space-y-1.5">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Upload CV <span className="text-red-500">*</span>
@@ -65,11 +66,11 @@ export const Apply = () => {
                 <HiOutlineUpload className="mx-auto text-gray-400 mb-2 " size={32} />
                 <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">click to upload</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">PDF or word, max 10MB</p>
-                <input name="cv_resume" type="file" className="mt-3 text-sm text-center justify-center" />
+                <input onChange={filehandler} name="cv_resume" type="file" className="mt-3 text-sm text-center justify-center" />
               </div>
             </div>
             <div className="flex justify-end gap-3 pt-2">
-              <Button variant="secondary">Cancel</Button>
+              <Button variant="secondary"><Link to={'/joblist'}>Cancel </Link> </Button>
               <Button type="submit">Submit Application</Button>
             </div>
           </form>

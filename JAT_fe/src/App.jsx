@@ -28,16 +28,15 @@ function App() {
   return (
     <>
     <BrowserRouter>
-    <Apply/>
+  
     <Routes> 
       <Route path='/login' element = {<LoglinPage/>} />
       <Route path='/register' element = {<Regiserpage/>}/>
       <Route element={<MainLayout/>}>
+        <Route path='/joblist/:id' element={<Apply/>}/>
         <Route path='/dashbord' element = {<Dashbord/>} />
         <Route path='/joblist' element = {<JOblist/>} />
-        
         <Route path='/home' element = {<Home/>} />
-        
       </Route>
     </Routes>
     </BrowserRouter>
