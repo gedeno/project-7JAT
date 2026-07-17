@@ -90,7 +90,7 @@ export function LoglinPage(){
                     </p>
                     <form className="space-y-5" onSubmit={formsubmithandler}>
                         <Input name='username' onChange={inputhandler} required lable="Username" placeholder="eg. ashenafi"/>
-                        <Input name='password' onChange={inputhandler} required lable="password" placeholder="enter your password"/>
+                        <Input type="password" name='password' onChange={inputhandler} required lable="password" placeholder="enter your password"/>
                         <Button className="w-full" size="lg" type="submit">Sign In</Button>
                     </form>
                 </div>

@@ -56,8 +56,8 @@ export const Apply = () => {
               type="textarea"
               placeholder="Tell the employer why to you're a great fit for this role ..."
             />
-            <Input onChange={inputhandler} name="portfolio_link" lable="portfolio link" type="url" />
-            <Input onChange={inputhandler}t name="github_link" lable= "github link" type="url" name="" id="" />
+            <Input onChange={inputhandler} name="portfolio_link" lable="portfolio link" type="text" />
+            <Input onChange={inputhandler}t name="github_link" lable= "github link" type="text" name="" id="" />
             <div className="space-y-1.5">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Upload CV <span className="text-red-500">*</span>

@@ -1,54 +1,60 @@
 import api from "../auth/api";
-import { useState , useEffect } from "react";
+import { useState , useEffect, lazy } from "react";
 import { useNavigate , Navigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import { JobCard } from "../ui/JobCard";
+import { Loader } from "../ui/Loader";
+import { HiOutlineBriefcase ,HiOutlineDocumentText ,HiOutlineClock,HiOutlineCheckCircle } from "react-icons/hi";
 export const Dashbord = () => {
-    const [formdata , setformdata] = useState({})
-
-    const inputhandler = (e) => {
-        setformdata({
-            ...formdata,
-            [e.target.name]:e.target.value
-        })
-    }
-    const navigate = useNavigate()
-
-    const submithandler = (e) => {
-        e.preventDefault()
-        const formD = new FormData()
-        formD.append('title',formdata.title)
-        formD.append('description',formdata.description)
-        formD.append('requirement',formdata.requirement)
-        formD.append('responsibilty',formdata.responsibilty)
-        formD.append('salary',formdata.salary)
-        formD.append('job_type',formdata.job_type)
-        formD.append('Employment',formdata.Employment)
-        api.post('jobs/job/',formD)
-        .then((res) => {
+    const [getjob , setgetjob ] = useState([])
+    useEffect(()=>{
+        api.get('/jobs/job/')
+        .then((res)=>{
+            setgetjob(res.data)
             console.log(res.data)
-            navigate('/home')
         })
-    }
+    },[])
+
+
+    const statCards =[
+        {label:'Available Jobs' , icon:HiOutlineBriefcase,color:'bg-primary-500'},
+        {label:'My Applications',icon:HiOutlineDocumentText,color:'bg-blue-500'},
+        {label:'Pending Review', icon:HiOutlineClock,color:'bg-amber-500'},
+        {label:'Approved Jobs' , icon:HiOutlineCheckCircle,color:'bg-green-500'}
+    ]
     return(
-        <>
-        <h1>post jobs</h1>
-        <form action="" onSubmit={submithandler}>
-            <label htmlFor="">title:</label>
-            <input onChange={inputhandler} type="text" name="title" id="" /> <br />
-            <label htmlFor="">description :</label>
-            <input onChange={inputhandler} type="text" name="discription" placeholder="discription" /> <br />
-            <label htmlFor="">requirement :</label>
-            <input onChange={inputhandler} type="text" name="requirement" /> <br />
-            <label htmlFor="">responsibilty :</label>
-            <input onChange={inputhandler} type="text" name="responsibilty" id="" /> <br />
-            <label htmlFor="">salary :</label>
-            <input onChange={inputhandler} type="text" name="salary" /> <br />
-            <label htmlFor="">job type :</label>
-            <input onChange={inputhandler} type="text" name="job_type" id="" /> <br />
-            <label htmlFor="">Employment :</label>
-            <input onChange={inputhandler} type="text" name="Employment" id="" /> <br />
-            <button type="submit" >submit</button>
-        </form>
-        </>
+        <div className="space-y-6">
+            <div>
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Wellcome back gedish!</h1>
+                <p className="text-gray-500 dark:text-gray-400 mt-1">Track your applications and discover new opportunities.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {statCards.map(({label ,icon:Icon , color})=>(
+                    <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-5 flex items-center gap-4">
+                        <div className={`w-12 h-12 rounded-xl ${color} flex items-center justify-center text-white `}>
+                            <Icon size={24}/>
+                        </div>
+                        <div>
+                            <p className="text-2xl font-bold text-gray-900 dark:text-white">0</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">{label}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div>
+                <div className="flex items-center justify-between mb-4">
+                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Recent Job listings</h2>
+                    <Link to="/joblist" className="text-sm text-primary-600 hover:text-primary-700 font-medium">View all →</Link>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                    {getjob.map((item) =>(
+                        <JobCard key={item.id} item={item} />
+                    ))
+
+                    }
+
+                </div>
+            </div>
+        </div>
     )
 }

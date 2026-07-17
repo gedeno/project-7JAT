@@ -10,5 +10,5 @@ class Application(models.Model):
     job = models.OneToOneField(Job, on_delete=models.CASCADE)
     cv_resume = models.FileField(upload_to='resumes/', blank=False, null=False)
     cover_letter = models.TextField()
-    portfolio_link = models.URLField(blank=True, null=True, default=None)
-    github_link = models.URLField(blank=True, null=True, default=None)  
+    portfolio_link = models.CharField(blank=True, null=True, default=None)
+    github_link = models.CharField(blank=True, null=True, default=None)  

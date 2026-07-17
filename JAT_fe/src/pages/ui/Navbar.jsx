@@ -10,7 +10,7 @@ export const Navbar = ({onMenuToggle}) => {
     api.get('/jobs/job/')
     .then((res) =>{
       setgetdata(res.data)
-      console.log(res.data)
+  
     })
   },[])
 

@@ -25,14 +25,12 @@ export const JOblist =() => {
     const formsubmithandler = (e) =>{
       api.post('/jobs/job/',formdata)
       .then((res)=>{
-        console.log(res.data)
       })
     }
     useEffect(()=>{
       api.get('/jobs/job/')
       .then((res)=>{
         setgetdata(res.data)
-        console.log(res.data)
       })
     },[])
 
