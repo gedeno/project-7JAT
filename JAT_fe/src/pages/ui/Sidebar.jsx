@@ -28,7 +28,7 @@ export const Sidebar = ({isOpen, onClose}) =>{
           <div className="flex flex-col h-full pt-4 lg:pt-6">
             <nav className="flex-1 px-3 space-y-1 ">
               {NavItems.map(({ label, icon: Icon ,to }) => (
-                <NavLink to={to} className= {({isActive}) =>`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors 
+                <NavLink key={label} to={to} className= {({isActive}) =>`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors 
                 ${isActive
                   ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400'
                   : 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800'

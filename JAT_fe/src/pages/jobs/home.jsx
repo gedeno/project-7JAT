@@ -21,7 +21,7 @@ export const Home = () => {
   }, []);
   return (
     <>
-      <h1>Name: {user.username}</h1>
+      <h1>Name: {user?.username}</h1>
       <h1>Hello world</h1>
     </>
   );
