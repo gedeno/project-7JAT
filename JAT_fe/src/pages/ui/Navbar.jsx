@@ -4,7 +4,14 @@ import { HiOutlineSun ,HiOutlineMoon ,HiOutlineBell } from 'react-icons/hi'
 import api from '../auth/api'
 import { useState ,useEffect } from 'react'
 import {jwtDecode} from 'jwt-decode'
+import { useTheme } from '../Context/ThemeContext'
+
 export const Navbar = ({onMenuToggle}) => {
+  const {darkMode , toggleTheme } = useTheme()
+
+
+
+
   const [getdata , setgetdata ] = useState([])
   useEffect(()=>{
     api.get('/jobs/job/')
@@ -44,8 +51,8 @@ export const Navbar = ({onMenuToggle}) => {
           </div>
 
           <div className='flex items-center gap-2'>
-            <button className='p-2 rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors '>
-              <HiOutlineMoon size={20} />
+            <button onClick={toggleTheme} className='p-2 rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors '>
+              {darkMode ? < HiOutlineSun size={20} />:<HiOutlineMoon/>}
             </button>
             <Link className='hidden sm:flex  items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'>
               <div className='h-8 w-8 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center '>

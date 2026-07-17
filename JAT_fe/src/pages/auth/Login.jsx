@@ -5,9 +5,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../ui/input";
 import { HiOutlineSun , HiOutlineMoon } from "react-icons/hi";
+import { useTheme } from "../Context/ThemeContext";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/Button";
 export function LoglinPage(){
+
+    const {darkMode , toggleTheme} = useTheme()
+
     const [formdata , setformdata] = useState({})
 
     const inputhandler = (e) =>{
@@ -79,8 +83,8 @@ export function LoglinPage(){
                             </div>
                             <span className="text-2xl font-bold text-gary-900 dark:text-white">ASTU</span>
                         </div>
-                        <button className="p-2 rounded-lg text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-800 ml-auto">
-                            <HiOutlineSun/>
+                        <button onClick={toggleTheme} className="p-2 rounded-lg text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-800 ml-auto">
+                            {darkMode ? <HiOutlineSun size={20} /> : <HiOutlineMoon size={20} />}
                         </button>
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Sign in</h2>

@@ -7,25 +7,14 @@ import { MainLayout } from './pages/layout/MainLayout'
 import { JOblist } from './pages/jobs/JobList'
 import { Apply } from './pages/jobs/Apply'
 import { Profile } from './pages/Profile'
+import { ThemeProvider } from './pages/Context/ThemeContext'
 
 function App() {
-  const [count, setCount] = useState(0)
-  localStorage.setItem('theme', 'dark');
-  window.matchMedia('(prefers-color-scheme: dark)').matches;
-  useEffect(() => {
-    const root = document.documentElement;
-    if (true) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, []);
+  
   return (
     <>
     <BrowserRouter>
-    
+    <ThemeProvider>
     <Routes> 
       <Route path='/login' element = {<LoglinPage/>} />
       <Route path='/register' element = {<Regiserpage/>}/>
@@ -36,6 +25,7 @@ function App() {
         <Route path='/joblist' element = {<JOblist/>} />
       </Route>
     </Routes>
+    </ThemeProvider>
     </BrowserRouter>
     </>
   )

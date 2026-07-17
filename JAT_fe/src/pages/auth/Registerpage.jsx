@@ -4,9 +4,13 @@ import api from "./api";
 import axios from "axios";
 import {Navigate , useNavigate , Link} from 'react-router-dom'
 import { HiOutlineSun ,HiOutlineMoon } from "react-icons/hi";
+import { useTheme } from "../Context/ThemeContext";
 import { Input } from "../ui/input";
 import { Button } from "../ui/Button";
 export default function Regiserpage(){
+
+    const {darkMode , toggleTheme } = useTheme()
+
     const [loading,setLoding] = useState({})
     const [formdata , setformdata ] = useState({})
     
@@ -38,8 +42,8 @@ export default function Regiserpage(){
                         </div>
                         <span className="text-2xl font-bold text-gray-900 dark:text-white">ASTU</span>
                     </Link>
-                    <button className="p-2 rounded-lg text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-800">
-                        <HiOutlineSun size={20}/>
+                    <button onClick={toggleTheme} className="p-2 rounded-lg text-gray-600 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-800">
+                        {darkMode?<HiOutlineSun size={20}/> :<HiOutlineMoon size={20} />}
                     </button>
                 </div>
 
