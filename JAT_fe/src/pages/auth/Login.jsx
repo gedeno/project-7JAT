@@ -21,7 +21,7 @@ export function LoglinPage(){
         e.preventDefault()
         api.post('/api/token/',formdata)
         .then((response) =>{
-            navigate('/home')
+            navigate('/dashboard')
             console.log(response.data)
             localStorage.setItem(ACCESS_TOKEN,response.data.access)
             localStorage.setItem(REFRESH_TOKEN,response.data.refresh)

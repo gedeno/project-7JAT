@@ -1,15 +1,12 @@
 import { useState,useEffect } from 'react'
 import { BrowserRouter ,Route ,Routes } from 'react-router-dom'
 import Regiserpage from './pages/auth/Registerpage'
-import { Home } from './pages/jobs/home'
 import { LoglinPage } from './pages/auth/Login'
 import { Dashbord } from './pages/dashbordpage/Dashbord'
-import { Sidebar } from './pages/ui/Sidebar'
-import { Navbar } from './pages/ui/Navbar'
 import { MainLayout } from './pages/layout/MainLayout'
-import { Button } from './pages/ui/Button'
 import { JOblist } from './pages/jobs/JobList'
 import { Apply } from './pages/jobs/Apply'
+import { Profile } from './pages/Profile'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,15 +25,15 @@ function App() {
   return (
     <>
     <BrowserRouter>
-  
+    
     <Routes> 
       <Route path='/login' element = {<LoglinPage/>} />
       <Route path='/register' element = {<Regiserpage/>}/>
       <Route element={<MainLayout/>}>
+        <Route path='/profile' element ={<Profile/>} />
         <Route path='/joblist/:id' element={<Apply/>}/>
-        <Route path='/dashbord' element = {<Dashbord/>} />
+        <Route path='/dashboard' element = {<Dashbord/>} />
         <Route path='/joblist' element = {<JOblist/>} />
-        <Route path='/home' element = {<Home/>} />
       </Route>
     </Routes>
     </BrowserRouter>
