@@ -13,7 +13,7 @@ const NavItems =  [
     {to:'/joblist' , label : 'Jobslit' , icon : HiOutlineBriefcase },
     {label : 'Messages' , icon : HiOutlineChatAlt2 },
     {to:'profile', label : 'Profile' , icon : HiOutlineUser },
-    {label : 'Setting' , icon : HiOutlineCog },
+    {to:'/setting', label : 'Setting' , icon : HiOutlineCog },
     ]
 
  
