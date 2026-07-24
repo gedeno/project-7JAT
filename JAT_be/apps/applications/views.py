@@ -5,6 +5,7 @@ from . serializers import ApplicationSerializer
 from . models import Application
 from apps.jobs.models import Job
 from rest_framework.permissions import AllowAny , IsAuthenticated
+from rest_framework.parsers import MultiPartParser , FormParser
 
 
 class GetMyApplicationsAPIView(generics.ListAPIView):
@@ -16,6 +17,7 @@ class GetMyApplicationsAPIView(generics.ListAPIView):
         return Application.objects.filter(applier=self.request.user.id)
 
 class CreateApplictaionApiView(generics.ListCreateAPIView):
+    parser_classes = (MultiPartParser, FormParser)
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
     permission_classes = [IsAuthenticated]
@@ -23,5 +25,4 @@ class CreateApplictaionApiView(generics.ListCreateAPIView):
         return Job.objects.get(id = self.kwargs['pk'])
         
     def perform_create(self, serializer):
-        if serializer.is_valid():
-            serializer.save(applier = self.request.user ,job =self.get_job())
+        serializer.save(applier = self.request.user ,job =self.get_job())

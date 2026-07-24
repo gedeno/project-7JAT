@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView ,RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated , AllowAny
+
 from .serializers import Jobserializer
 from .models import Job
 
@@ -23,5 +24,11 @@ class CreateJobApiView(ListCreateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return Response({'work':'done'})
-
+class JobDetail(RetrieveUpdateDestroyAPIView):
+    queryset =Job.objects.all()
+    serializer_class = Jobserializer
+    permission_classes = [IsAuthenticated]
+    def get_object(self):
+        job = Job.objects.get(id = self.kwargs['pk'])
+        return job
 
