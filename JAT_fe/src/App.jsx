@@ -21,7 +21,7 @@ function App() {
       <Route path='/login' element = {<LoglinPage/>} />
       <Route path='/register' element = {<Regiserpage/>}/>
       <Route element={<MainLayout/>}>
-        <Route path='/jobdetail' element = {<JobDetail/>}/>
+        <Route path='/jobdetail/:id' element = {<JobDetail/>}/>
         <Route path='/setting' element = {<Setting/>}/>
         <Route path='/profile' element ={<Profile/>} />
         <Route path='/joblist/:id' element={<Apply/>}/>

@@ -70,8 +70,8 @@ export const Profile = () =>{
                         {getjob.map((app)=>(
                             <div key={app.id} className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4 flex flex-col sm:items-center justify-between gap-3">
                                 <div>
-                                    <h3 className="font-medium text-gray-900 dark:text-white">{app.job.title}</h3>
-                                    <p className="text-sm text-gray-500">{app.job.company}</p>
+                                    <h3 className="font-medium text-gray-900 dark:text-white">{app.jobs.title}</h3>
+                                    <p className="text-sm text-gray-500">{app.jobs.company}</p>
                                     <p className="text-xs text-gray-400 mt-1">{app.cv_resume.split("/").pop()}</p>
                                 </div>
                                 <span className={`text-xs font-medium px-3 py-1 rounded-full capitalize self-start ${statuseColors[status]}`} >{status}</span>

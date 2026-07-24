@@ -1,5 +1,5 @@
 import { HiOutlineSearch, HiOutlineFilter } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useSearchParams } from "react-router-dom";
 import { useState,useEffect} from "react";
 import { JobCard } from "../ui/JobCard";
 import { Input } from "../ui/input";
@@ -9,6 +9,8 @@ import { Loader } from "../ui/Loader";
 import api from "../auth/api";
 export const JOblist =() => {
     const loading = false
+    
+    const [searchParems] = useSearchParams()
     const [showfilter, setshowfilter] = useState(false)
     const [showcreatemodal ,setshowcreatemodal] = useState(false)
 
@@ -33,6 +35,12 @@ export const JOblist =() => {
         setgetdata(res.data)
       })
     },[])
+
+    useEffect(() =>{
+      if (searchParems.get('action') === 'create'){
+        setshowcreatemodal(true)
+      }
+    }, [searchParems])
 
     
 

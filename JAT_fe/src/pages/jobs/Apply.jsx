@@ -25,6 +25,7 @@ export const Apply = () => {
         })
     }
     const formsubmithandler = (e) => {
+      e.preventDefault()
         const Fd = new FormData()
         Fd.append('cover_letter',formdata.cover_letter)
         Fd.append('portfolio_link',formdata.portfolio_link)
@@ -33,6 +34,9 @@ export const Apply = () => {
         api.post(`/applis/applic/${id}/`,Fd)
         .then((res)=>{
             console.log(res.data)
+        })
+        .catch((error)=>{
+          console.error('Application submission failed:', error.response?.data ?? error.message)
         })
     }
 
@@ -57,7 +61,7 @@ export const Apply = () => {
               placeholder="Tell the employer why to you're a great fit for this role ..."
             />
             <Input onChange={inputhandler} name="portfolio_link" lable="portfolio link" type="text" />
-            <Input onChange={inputhandler}t name="github_link" lable= "github link" type="text" name="" id="" />
+            <Input onChange={inputhandler}t name="github_link" lable= "github link" type="text" id="" />
             <div className="space-y-1.5">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Upload CV <span className="text-red-500">*</span>

@@ -9,6 +9,15 @@ import { HiOutlineLocationMarker,
     HiOutlineArrowLeft} from "react-icons/hi";
 import { MdWorkOutline } from "react-icons/md";
 export const JobDetail = () =>{
+    const {id } = useParams()
+    const [jobdetail ,setjobdetail] = useState({})
+    useEffect(()=>{
+        api.get(`/jobs/jobdetail/${id}/`)
+        .then((res)=>{
+            setjobdetail(res.data)
+    
+        })
+    },[])
     return(
         <div className=" max-w-4xl mx-auto space-y-6">
             <Link to = '/joblist' className="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-primary-600 transition-colors">
@@ -19,8 +28,8 @@ export const JobDetail = () =>{
                 <div className="bg-gradient-to-r from-primary-600 to-primary-700 px-6 py-8 text-white">
                     <div className="flex items-start justify-between gap-4">
                         <div>
-                            <h1 className="text-2xl font-medium px-3 py-1 founded-full capitalize">Senior Frontend Developer</h1>
-                            <p>TechHub Africa</p>
+                            <h1 className="text-2xl font-medium px-3 py-1 founded-full capitalize">{jobdetail.title}</h1>
+                            <p>{jobdetail.company}</p>
                         </div>
                     </div>
                 </div>
@@ -28,28 +37,28 @@ export const JobDetail = () =>{
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                         <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                             <HiOutlineCurrencyDollar className="text-primary-500" size={20}/>
-                            <span>80,000 - 120,000 ETB/month</span>
+                            <span>{jobdetail.salary}</span>
                         </div>
                         <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                             <MdWorkOutline className="text-primary-500" size={20}/>
-                            <span>Full-TIme</span>
+                            <span>{jobdetail.Employment_type}</span>
                         </div>
                         <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                             <HiOutlineLocationMarker className="text-primary-500" size={20}/>
-                            <span>Addis Abeba (Remote)</span>
+                            <span>{jobdetail.location} {jobdetail.job_type}</span>
                         </div>
                         <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                             <HiOutlineClock/>
-                            <span>Deadline: 2026-08-15</span>
+                            <span>{jobdetail.deadline}</span>
                         </div>
                     </div>
                     <div className="mb-8">
                         <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Discription</h2>
                         <p className="text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line"
-                        >We are looking for an experienced React developer to join our growing team. You will build modern web applications, collaborate with designers, and mentor junior developers. Requirements: 3+ years React experience, TypeScript knowledge, and strong CSS skills</p>
+                        >{jobdetail.description}</p>
                     </div>
                     <div className="flex flex-wrap gap-3">
-                        <Button size="lg" >Apply for this Job</Button>
+                        <Link to={`/joblist/${jobdetail.id}`}><Button size="lg" >Apply for this Job</Button></Link>
                     </div>
                 </div>
             </div>

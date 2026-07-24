@@ -39,7 +39,7 @@ export const Sidebar = ({isOpen, onClose}) =>{
               ))}
             </nav>
             <div className="p-4 border-t border-gray-200 dark:border-gray-800">
-              <NavLink className="flex items-center gap-3 justify-center w-full px-4 py-2.5 rounded-lg bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium transition-colors ">
+              <NavLink to = "joblist?action=create" className="flex items-center gap-3 justify-center w-full px-4 py-2.5 rounded-lg bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium transition-colors ">
                 {" "}
                 <HiOutlineDocument size={20} /> post a job{" "}
               </NavLink>

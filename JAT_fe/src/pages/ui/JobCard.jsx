@@ -56,8 +56,8 @@ export const JobCard = ({item}) => {
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <Link className="flex-1">
-            <Button variant="outline" className="w-full" size="sm"><Link to='/jobdetail'>View Details</Link></Button>
+          <Link className="flex-1" to={`/jobdetail/${item.id}`}>
+            <Button variant="outline" className="w-full" size="sm">View Details</Button>
           </Link>
           <Button  size="sm" className="flex-1" > <Link to={`/joblist/${item.id}`} > Apply Now </Link></Button>
         </div>
