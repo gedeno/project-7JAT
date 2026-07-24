@@ -26,3 +26,10 @@ class CreateApplictaionApiView(generics.ListCreateAPIView):
         
     def perform_create(self, serializer):
         serializer.save(applier = self.request.user ,job =self.get_job())
+class Myjob(generics.ListCreateAPIView):
+    queryset = Application.objects.all()
+    serializer_class = ApplicationSerializer
+    permission_classes = [IsAuthenticated]
+    def get_object(self):
+        myjob = Job.objects.filter(poster =self.request.user)
+        return myjob

@@ -31,4 +31,10 @@ class JobDetail(RetrieveUpdateDestroyAPIView):
     def get_object(self):
         job = Job.objects.get(id = self.kwargs['pk'])
         return job
+class Myjobs(ListCreateAPIView):
+    queryset = Job.objects.all()
+    serializer_class = Jobserializer
+    permission_classes = [IsAuthenticated]
+    def get_queryset(self):
+        return Job.objects.filter(poster = self.request.user)
 
