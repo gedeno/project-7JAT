@@ -9,6 +9,7 @@ import { Apply } from './pages/jobs/Apply'
 import { Profile } from './pages/Profile'
 import { ThemeProvider } from './pages/Context/ThemeContext'
 import { Setting } from './pages/Setting'
+import { JobDetail } from './pages/jobs/JobDetail'
 
 function App() {
   
@@ -16,11 +17,11 @@ function App() {
     <>
     <BrowserRouter>
     <ThemeProvider>
-      
     <Routes> 
       <Route path='/login' element = {<LoglinPage/>} />
       <Route path='/register' element = {<Regiserpage/>}/>
       <Route element={<MainLayout/>}>
+        <Route path='/jobdetail' element = {<JobDetail/>}/>
         <Route path='/setting' element = {<Setting/>}/>
         <Route path='/profile' element ={<Profile/>} />
         <Route path='/joblist/:id' element={<Apply/>}/>
