@@ -35,10 +35,20 @@ export const Profile = () =>{
         api.get('/applis/apply')
         .then((res)=>{
             setgetjob(res.data)
-            console.log(res.data)
         })
     },[])
     const job_len = getjob.length
+
+    const [myjob , setmyjob ] = useState([])
+
+    useEffect(() => {
+        api.get('/jobs/myjob')
+        .then((res) =>{
+            setmyjob(res.data)
+           
+        })
+    },[])
+    const myjobslen = myjob.length
 
 
     
@@ -49,7 +59,7 @@ export const Profile = () =>{
                 <div className="px-6 pb-6 -mt-12">
                     <div className="flex flex-col sm:flex-row sm:items-end gap-4">
                         <div className="w-24 h-24 rounded-2xl bg-white dark:bg-gray-900 border-4 border-white dark:border-gray-900 flex items-center justify-center shadow-lg">
-                            <span className="text-3xl font-bold text-primary-600">{f_name}{l_name}</span>
+                            <span className="text-3xl font-bold text-primary-600 ">{f_name}{l_name}</span>
                         </div>
                         <div className="flex-1">
                             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{user.first_name} {user.last_name}</h1>
@@ -59,8 +69,9 @@ export const Profile = () =>{
                     </div>
                 </div>
             </div>
-            <div>
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">My applications({job_len})</h2>
+            <div className=" grid grid-cols-2 gap-3 ">
+                <div>
+                <h2 className="items-end text-lg font-semibold text-gray-900 dark:text-white mb-4">My applications({job_len})</h2>
                 {job_len === 0?(
                     <div className="text-center py-12 bg-white dark:bg-gray-900 rounded-xl border border-gray-800">
                         <p className="text-gray-500">You Havent-t applied to any jobs yet.</p>
@@ -79,7 +90,19 @@ export const Profile = () =>{
                         ))}
                     </div>
                 )}
-                
+                </div>
+                <div>
+                    <h2 className="items-end text-lg font-semibold text-gray-900 dark:text-white mb-4">My Posted job({myjobslen})</h2>
+
+                    {myjob.map((app)=>(
+                            <div key={app.id} className=" mb-2 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4 flex flex-col sm:items-center justify-between gap-3">
+                                <div>
+                                    <h3 className="font-medium text-gray-900 dark:text-white">{app.title}</h3>
+                                    <p className="text-sm text-gray-500">{app.company}</p> 
+                                </div>
+                            </div>
+                        ))}
+                </div>
             </div>
         </div>
     )
