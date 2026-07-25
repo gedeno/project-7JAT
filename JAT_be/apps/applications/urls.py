@@ -3,5 +3,6 @@ from .import views
 
 urlpatterns = [
     path('applic/<int:pk>/', views.CreateApplictaionApiView.as_view()),
-    path('apply/', views.GetMyApplicationsAPIView.as_view())
+    path('apply/', views.GetMyApplicationsAPIView.as_view()).
+    path('mayapp/<int:pk>/',views.Myjobapps.as_view())
 ]
