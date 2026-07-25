@@ -3,6 +3,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/Button";
 import { Loader } from "./ui/Loader";
 import { jwtDecode } from "jwt-decode";
+import { Link } from "react-router-dom";
 import { HiOutlineMail , HiOutlinePhone ,HiOutlineLocationMarker } from "react-icons/hi";
 import api from "./auth/api";
 
@@ -95,12 +96,15 @@ export const Profile = () =>{
                     <h2 className="items-end text-lg font-semibold text-gray-900 dark:text-white mb-4">My Posted job({myjobslen})</h2>
 
                     {myjob.map((app)=>(
+                       
                             <div key={app.id} className=" mb-2 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4 flex flex-col sm:items-center justify-between gap-3">
                                 <div>
                                     <h3 className="font-medium text-gray-900 dark:text-white">{app.title}</h3>
                                     <p className="text-sm text-gray-500">{app.company}</p> 
                                 </div>
+                                 <Link><Button  >Go to appliers</Button></Link>
                             </div>
+                           
                         ))}
                 </div>
             </div>
