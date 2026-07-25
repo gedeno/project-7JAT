@@ -10,6 +10,7 @@ import { Profile } from './pages/Profile'
 import { ThemeProvider } from './pages/Context/ThemeContext'
 import { Setting } from './pages/Setting'
 import { JobDetail } from './pages/jobs/JobDetail'
+import { Appliers } from './pages/jobs/Applires'
 
 function App() {
   
@@ -21,6 +22,7 @@ function App() {
       <Route path='/login' element = {<LoglinPage/>} />
       <Route path='/register' element = {<Regiserpage/>}/>
       <Route element={<MainLayout/>}>
+        <Route path='/Appliers/:id' element = {<Appliers/>} />
         <Route path='/jobdetail/:id' element = {<JobDetail/>}/>
         <Route path='/setting' element = {<Setting/>}/>
         <Route path='/profile' element ={<Profile/>} />

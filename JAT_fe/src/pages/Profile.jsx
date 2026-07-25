@@ -102,7 +102,7 @@ export const Profile = () =>{
                                     <h3 className="font-medium text-gray-900 dark:text-white">{app.title}</h3>
                                     <p className="text-sm text-gray-500">{app.company}</p> 
                                 </div>
-                                 <Link><Button  >Go to appliers</Button></Link>
+                                 <Link to={`/Appliers/${app.id}`} ><Button  >Go to appliers</Button></Link>
                             </div>
                            
                         ))}

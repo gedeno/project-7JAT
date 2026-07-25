@@ -30,6 +30,9 @@ class Myjob(generics.ListCreateAPIView):
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
     permission_classes = [IsAuthenticated]
-    def get_object(self):
-        myjob = Job.objects.filter(poster =self.request.user)
+    def get_job(self):
+        myjob = Job.objects.filter(id = self.kwargs['pk'])
         return myjob
+    def get_object(self):
+        applicant = Application.objects.filter(job=self.get_job)
+        return applicant
