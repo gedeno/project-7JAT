@@ -74,7 +74,8 @@ export const Apply = () => {
               </div>
             </div>
             <div className="flex justify-end gap-3 pt-2">
-              <Button variant="secondary"><Link to={'/joblist'}>Cancel </Link> </Button>
+              <Link to={'/joblist'}> <Button variant="secondary" >Cancel</Button> </Link>
+              
               <Button type="submit">Submit Application</Button>
             </div>
           </form>
