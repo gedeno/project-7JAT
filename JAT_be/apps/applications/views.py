@@ -27,6 +27,7 @@ class CreateApplictaionApiView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(applier = self.request.user ,job =self.get_job())
 class Myjobapps(generics.ListCreateAPIView):
+    parser_classes = (MultiPartParser, FormParser)
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
     permission_classes = [IsAuthenticated]
