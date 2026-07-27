@@ -9,7 +9,7 @@ class ApplicationSerializer(serializers.ModelSerializer):
     appliers = serializers.SerializerMethodField()
     class Meta:
         model = Application
-        fields = ['id', 'applier','job', 'cv_resume' , 'cover_letter' , 'portfolio_link' , 'github_link','jobs','appliers']
+        fields = ['id' , 'application', 'applier','job', 'cv_resume' , 'cover_letter' , 'portfolio_link' , 'github_link','jobs','appliers']
         extra_kwargs = {'applier': {'read_only': True}, 'job':{'read_only':True} ,'jobs':{'read_only':True} ,'appliers':{'read_only':True}}
 
     def get_jobs(self, obj):

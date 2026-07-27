@@ -37,3 +37,9 @@ class Myjobapps(generics.ListCreateAPIView):
     def get_queryset(self):
         applicant = Application.objects.filter(job=self.get_job())
         return applicant
+class Jobapprovment(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Application.objects.all()
+    serializer_class = ApplicationSerializer
+    permission_classes = [IsAuthenticated]
+    def get_object(self):
+        return Application.objects.get(id = self.kwargs['pk'])
