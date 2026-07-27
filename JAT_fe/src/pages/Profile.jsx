@@ -86,7 +86,7 @@ export const Profile = () =>{
                                     <p className="text-sm text-gray-500">{app.jobs.company}</p>
                                     <p className="text-xs text-gray-400 mt-1">{app.cv_resume.split("/").pop()}</p>
                                 </div>
-                                <span className={`text-xs font-medium px-3 py-1 rounded-full capitalize self-start ${statuseColors[status]}`} >{status}</span>
+                                <span className={`text-xs font-medium px-3 py-1 rounded-full capitalize self-start ${statuseColors[app.application]}`} >{app.application}</span>
                             </div>
                         ))}
                     </div>

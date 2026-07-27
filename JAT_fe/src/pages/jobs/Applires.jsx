@@ -9,6 +9,7 @@ export const Appliers = () => {
     accepted: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
     pending: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
     rejected: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+    reviewed:'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
    };
     const {id} = useParams()
     const [users,setusers] = useState([])
@@ -16,6 +17,7 @@ export const Appliers = () => {
         api.get(`/applis/myapp/${id}/`)
         .then((res)=>{
             setusers(res.data)
+            console.log(res.data)
             
         })
     },[])
@@ -25,7 +27,7 @@ export const Appliers = () => {
             ...jobappruvment,
             [e.target.name]:e.target.value
         })}
-    const employnentstatus = ['pending','accepted','rejected']
+    const employnentstatus = ['pending','accepted','rejected','reviewed']
     const formsubmithandler = (e,item) => {
         e.preventDefault()
         const fd = new FormData()
