@@ -14,6 +14,7 @@ const NavItems =  [
     {label : 'Messages' , icon : HiOutlineChatAlt2 },
     {to:'profile', label : 'Profile' , icon : HiOutlineUser },
     {to:'/setting', label : 'Setting' , icon : HiOutlineCog },
+    {to:'/admin', label : 'Admin Panel' , icon: HiOutlineShieldCheck }
     ]
 
  

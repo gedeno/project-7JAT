@@ -54,9 +54,9 @@ export const Navbar = ({onMenuToggle}) => {
             <button onClick={toggleTheme} className='p-2 rounded-lg text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 transition-colors '>
               {darkMode ? < HiOutlineSun size={20} />:<HiOutlineMoon/>}
             </button>
-            <Link className='hidden sm:flex  items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'>
+            <Link to='/profile' className='hidden sm:flex  items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors'>
               <div className='h-8 w-8 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center '>
-                <span className=' text-primary-700 dark: text-primary-300 text-xl font-bold'>{userF}</span>
+                <span className=' text-primary-700 dark: text-primary-300 text-xl font-bold '>{userF}</span>
               </div>
               <div className='text-left '>
                 <p className='text-sm font-medium text-gray-900 dark:text-white'>{user.first_name} {user.last_name}</p>
