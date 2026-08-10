@@ -15,6 +15,7 @@ export const Dashbord = () => {
         })
     },[])
     const joblength = getjob.length
+    const pendingjoblength = getjob.filter((job) => !job.is_approved).length
     const [myapplics, setmyapplics ] = useState([])
     useEffect(()=>{
         api.get('/applis/apply')

@@ -4,6 +4,7 @@ from .import views
 urlpatterns = [
     path('job/',views.CreateJobApiView.as_view()),
     path('jobdetail/<int:pk>/',views.JobDetail.as_view()),
-    path('myjob/',views.Myjobs.as_view())
+    path('myjob/',views.Myjobs.as_view()),
+    path('jobapproval/<int:pk>/',views.JobApprovalAPIView.as_view())
 
 ]

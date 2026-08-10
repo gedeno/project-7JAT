@@ -16,6 +16,7 @@ export const Admin = () => {
         setgetdata(res.data)
       })
     },[])
+    const pendingjoblength = getdata.filter((job) => !job.is_approved).length
     const [users ,setusers] = useState([])
     useEffect(() =>{
         axios.get('http://127.0.0.1:8000/users/user/')
@@ -24,16 +25,17 @@ export const Admin = () => {
             console.log(res.data)
         })
     },[])
-    const tabs =[ {id:'pending' , label:`pending Jobs (${getdata.length})`},
+    const tabs =[ {id:'pending' , label:`pending Jobs (${pendingjoblength})`},
                   {id:'users' , label:`Users (${users.length})`},
                   {id: 'jobs' , label:`All jobs (${getdata.length})`}
     ]
 
-
-    const jobappruvalhandler = ()=>{
-        api.patch(`/jobs/job/${job.id}/`,
+    const navigate = useNavigate()
+    const jobappruvalhandler = (job)=>{
+        api.patch(`/jobs/jobapproval/${job.id}/`,
             {is_approved : true}
         ).then((res) => {
+            navigate('/admin')
             console.log(res.data)
         })}
 
@@ -61,6 +63,7 @@ export const Admin = () => {
                         </div>
                     ):(
                         getdata.map((job) => (
+                            !job.is_approved&&(
                             <div key={job.id} className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 border-gray-800 p-5" >
                                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                                     <div>
@@ -70,11 +73,12 @@ export const Admin = () => {
                                         <p className="text-xs text-gray-400 mt-2">Deadline {job.deadline}</p>
                                     </div>
                                     <div className="flex gap-2 shrink-0">
-                                        <Button size="sm" onClick={jobappruvalhandler}><HiOutlineCheck/> Approve</Button>
+                                        <Button size="sm" onClick={() =>jobappruvalhandler(job)}><HiOutlineCheck/> Approve</Button>
                                         <Button variant="danger" size="sm"><HiOutlineX/> Reject</Button>
                                     </div>
                                 </div>
                             </div>
+                            )
                         ))
                     )}
                 </div>

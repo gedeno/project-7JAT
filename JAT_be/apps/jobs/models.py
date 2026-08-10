@@ -12,7 +12,7 @@ JOB_CHOOSE  = (
 
 class Job(models.Model):
     poster = models.ForeignKey(User, on_delete=models.CASCADE)
-    is_approved = models.CharField(max_length=200 , null=True , default= None)
+    is_approved = models.BooleanField(default=False , null =False)
     title = models.CharField(max_length=40)
     description = models.TextField()
     company = models.CharField(max_length=300)

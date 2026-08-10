@@ -20,9 +20,14 @@ class CreateJobApiView(ListCreateAPIView):
     
     def create(self, request, *args, **kwargs):
         print(request.data)
+    
         serializer = Jobserializer(data = request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
+        serializer = Jobserializer(data=request.data)
+
+        if not serializer.is_valid():
+            print(serializer.errors)
         return Response({'work':'done'})
 class JobDetail(RetrieveUpdateDestroyAPIView):
     queryset =Job.objects.all()
@@ -37,4 +42,11 @@ class Myjobs(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     def get_queryset(self):
         return Job.objects.filter(poster = self.request.user)
+class JobApprovalAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Job.objects.all()
+    serializer_class = Jobserializer
+    permission_classes = [IsAuthenticated]
+    def get_object(self):
+        job = Job.objects.get(id = self.kwargs['pk'])
+        return job
 
