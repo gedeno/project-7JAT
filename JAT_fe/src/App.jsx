@@ -13,6 +13,7 @@ import { JobDetail } from './pages/jobs/JobDetail'
 import { Appliers } from './pages/jobs/Applires'
 import { Admin } from './pages/Admin'
 
+
 function App() {
   
   return (
@@ -23,7 +24,7 @@ function App() {
     <Routes> 
       <Route path='/login' element = {<LoglinPage/>} />
       <Route path='/register' element = {<Regiserpage/>}/>
-      <Route element={<MainLayout/>}>
+            <Route element={<MainLayout/>}>
         <Route path='/admin' element = {<Admin/>}/>
         <Route path='/Appliers/:id' element = {<Appliers/>} />
         <Route path='/jobdetail/:id' element = {<JobDetail/>}/>

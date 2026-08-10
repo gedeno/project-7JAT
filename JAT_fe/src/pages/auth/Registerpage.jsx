@@ -20,9 +20,15 @@ export default function Regiserpage(){
             [e.target.name]:e.target.value
         })
     }
+    const [errors , seterrors] = useState('')
     const navigate = useNavigate()
     const fromsubmithandler = (e) =>{
         e.preventDefault()
+        if(formdata.password !== formdata.confirm_password){
+            const errors = "passowrd and confirm password does not match"
+            seterrors(errors)
+            return
+        }
         axios.post('http://127.0.0.1:8000/users/user/', formdata)
         .then((resp)=>{
             console.log(resp.data)
@@ -61,6 +67,12 @@ export default function Regiserpage(){
                         <Input name='username' onChange={inputChangehandler} required lable="Username"/>
                         <Input name='email' onChange={inputChangehandler} required lable="Email"/>
                         <Input name='password' onChange={inputChangehandler} required lable='password'/>
+                        <Input name='confirm_password' onChange={inputChangehandler} required lable='confirm password'/>
+                        {
+                        errors && <p className="text-red-500">{errors}</p>
+
+                        }
+                        <p>{errors}</p>
                         <Button className="w-full" size="lg" type="submit">
                             Create Account
                         </Button>

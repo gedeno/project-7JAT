@@ -6,19 +6,36 @@ import {HiOutlineViewGrid ,
     HiOutlineCog ,
     HiOutlineShieldCheck , 
     HiOutlineDocument } from 'react-icons/hi'
-import { useState } from "react";
-    
-const NavItems =  [ 
+import { useState ,useEffect } from "react";
+import {jwtDecode} from 'jwt-decode'
+import api from "../auth/api";
+
+export const Sidebar = ({isOpen, onClose}) =>{
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const token = localStorage.getItem('access')
+    const decoded = jwtDecode(token)
+    const id = decoded.user_id
+    api.get(`/users/user/${id}`)
+      .then((res) => {
+        setUser(res.data);
+      });
+  }, []);
+  console.log(user)
+
+  const NavItems =  [ 
     {to:'/dashboard' , label : 'Dashbord' , icon : HiOutlineViewGrid },
     {to:'/joblist' , label : 'Jobslit' , icon : HiOutlineBriefcase },
     {label : 'Messages' , icon : HiOutlineChatAlt2 },
     {to:'profile', label : 'Profile' , icon : HiOutlineUser },
     {to:'/setting', label : 'Setting' , icon : HiOutlineCog },
-    {to:'/admin', label : 'Admin Panel' , icon: HiOutlineShieldCheck }
+    
     ]
 
- 
-export const Sidebar = ({isOpen, onClose}) =>{
+  if(user.is_superuser){
+    NavItems.push({to:'/admin', label : 'Admin Panel' , icon: HiOutlineShieldCheck })
+  }
     return (
       <>
         {isOpen && (<div className="fixed inset-0 z-30 bg-black/50 lg:hidden " onClick={onClose}/>)}
