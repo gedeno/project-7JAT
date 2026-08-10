@@ -29,6 +29,14 @@ export const Admin = () => {
                   {id: 'jobs' , label:`All jobs (${getdata.length})`}
     ]
 
+
+    const jobappruvalhandler = ()=>{
+        api.patch(`/jobs/job/${job.id}/`,
+            {is_approved : true}
+        ).then((res) => {
+            console.log(res.data)
+        })}
+
     return(
         <div className="space-y-6">
             <div>
@@ -62,7 +70,7 @@ export const Admin = () => {
                                         <p className="text-xs text-gray-400 mt-2">Deadline {job.deadline}</p>
                                     </div>
                                     <div className="flex gap-2 shrink-0">
-                                        <Button size="sm"><HiOutlineCheck/> Approve</Button>
+                                        <Button size="sm" onClick={jobappruvalhandler}><HiOutlineCheck/> Approve</Button>
                                         <Button variant="danger" size="sm"><HiOutlineX/> Reject</Button>
                                     </div>
                                 </div>

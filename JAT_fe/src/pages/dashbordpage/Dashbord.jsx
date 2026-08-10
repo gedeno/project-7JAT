@@ -24,6 +24,7 @@ export const Dashbord = () => {
     },[])
     const myappliength = myapplics.length
 
+
     const [user,setuser] = useState({})
     useEffect(()=>{
         const token =localStorage.getItem('access')
@@ -35,7 +36,7 @@ export const Dashbord = () => {
             })
         },[])
 
-
+    const issuperuser = user.is_superuser
     const statCards =[
         {label:'Available Jobs' , icon:HiOutlineBriefcase,color:'bg-primary-500', value:joblength},
         {label:'My Applications',icon:HiOutlineDocumentText,color:'bg-blue-500', value:myappliength},
@@ -61,6 +62,17 @@ export const Dashbord = () => {
                     </div>
                 ))}
             </div>
+            {issuperuser &&(
+                <div className=" bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4 flex items-center justify-between">
+                    <div>
+                        <p className="font-medium text-amber-800 dark:text-amber-300">{joblength} job{joblength !== 1 ? 's': ''} awaiting approval</p>
+                        <p className="text-sm text-amber-600 dark:text-amber-400">Review and approve pending job posts</p>
+                    </div>
+                    <Link className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium rounded-lg transition-colors" to = "/admin">Review Now</Link>
+                </div>
+            )
+                
+            }
             <div>
                 <div className="flex items-center justify-between mb-4">
                     <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Recent Job listings</h2>
