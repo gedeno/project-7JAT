@@ -14,8 +14,9 @@ export const Dashbord = () => {
             setgetjob(res.data)
         })
     },[])
-    const joblength = getjob.length
+    const joblength =  getjob.filter((job) => job.is_approved).length
     const pendingjoblength = getjob.filter((job) => !job.is_approved).length
+    const alljoblength = getjob.length
     const [myapplics, setmyapplics ] = useState([])
     useEffect(()=>{
         api.get('/applis/apply')
@@ -38,7 +39,14 @@ export const Dashbord = () => {
         },[])
 
     const issuperuser = user.is_superuser
-    const statCards =[
+    const statCards = issuperuser ?
+    [
+        { label: 'Total Jobs', value:alljoblength, icon: HiOutlineBriefcase, color: 'bg-blue-500' },
+        { label: 'Approved', value: joblength, icon: HiOutlineCheckCircle, color: 'bg-green-500' },
+        { label: 'Pending Approval', value: pendingjoblength, icon: HiOutlineClock, color: 'bg-amber-500' },
+        { label: 'Applications', value: myappliength, icon: HiOutlineDocumentText, color: 'bg-purple-500' },
+      ]
+    :[
         {label:'Available Jobs' , icon:HiOutlineBriefcase,color:'bg-primary-500', value:joblength},
         {label:'My Applications',icon:HiOutlineDocumentText,color:'bg-blue-500', value:myappliength},
         {label:'Pending Review', icon:HiOutlineClock,color:'bg-amber-500',value:0},
@@ -63,10 +71,10 @@ export const Dashbord = () => {
                     </div>
                 ))}
             </div>
-            {issuperuser &&(
+            {issuperuser && pendingjoblength > 0 &&(
                 <div className=" bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4 flex items-center justify-between">
                     <div>
-                        <p className="font-medium text-amber-800 dark:text-amber-300">{joblength} job{joblength !== 1 ? 's': ''} awaiting approval</p>
+                        <p className="font-medium text-amber-800 dark:text-amber-300">{pendingjoblength} job{pendingjoblength !== 1 ? 's': ''} awaiting approval</p>
                         <p className="text-sm text-amber-600 dark:text-amber-400">Review and approve pending job posts</p>
                     </div>
                     <Link className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium rounded-lg transition-colors" to = "/admin">Review Now</Link>
@@ -81,7 +89,9 @@ export const Dashbord = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                     {getjob.map((item) =>(
+                        item.is_approved &&(
                         <JobCard key={item.id} item={item} />
+                    )
                     ))}
                 </div>
             </div>

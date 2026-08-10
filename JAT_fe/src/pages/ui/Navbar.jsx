@@ -5,7 +5,7 @@ import api from '../auth/api'
 import { useState ,useEffect } from 'react'
 import {jwtDecode} from 'jwt-decode'
 import { useTheme } from '../Context/ThemeContext'
-
+import { useNavigate } from 'react-router-dom'
 export const Navbar = ({onMenuToggle}) => {
   const {darkMode , toggleTheme } = useTheme()
 
@@ -31,6 +31,12 @@ export const Navbar = ({onMenuToggle}) => {
         setUser(res.data);
       });
   }, []);
+  const navigate = useNavigate()
+  const logouthandler = () => {
+    localStorage.removeItem('access')
+    localStorage.removeItem('refresh')
+    navigate("/login")
+  }
   
   const userF =user?.username?.[0]
     return (
@@ -63,7 +69,7 @@ export const Navbar = ({onMenuToggle}) => {
                 <p className='text-xs text-gray-500 capitalize '>User</p>
               </div>
             </Link>
-            <button className='p-2 rounded-lg text-gray-600 hover:bg-red-500 hover:text-red-600 dark:text-gray-300 dark:hover:bg-red-900/20' aria-label='logout'>
+            <button onClick={logouthandler} className='p-2 rounded-lg text-gray-600 hover:bg-red-500 hover:text-red-600 dark:text-gray-300 dark:hover:bg-red-900/20' aria-label='logout'>
               <IoLogOutOutline size={20}/>
             </button>
           </div>

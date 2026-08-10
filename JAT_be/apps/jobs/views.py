@@ -49,4 +49,11 @@ class JobApprovalAPIView(RetrieveUpdateDestroyAPIView):
     def get_object(self):
         job = Job.objects.get(id = self.kwargs['pk'])
         return job
-
+    def delete(self, request, *args, **kwargs):
+        obj = self.get_object()
+        obj.delete()
+        lists = Job.objects.all()
+        serializer = Jobserializer(lists,many=True)
+        return Response(
+            serializer.data
+        )

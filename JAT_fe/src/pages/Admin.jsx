@@ -3,6 +3,7 @@ import { Button } from "./ui/Button";
 import { HiOutlineCheck , HiOutlineX , HiOutlineTrash } from "react-icons/hi";
 import axios from "axios";
 import api from "./auth/api";
+import { useNavigate } from "react-router-dom"
 
 export const Admin = () => {
     const [activetab , setactivetab] = useState('pending')
@@ -38,6 +39,12 @@ export const Admin = () => {
             navigate('/admin')
             console.log(res.data)
         })}
+    const deletejobhandler = (job) =>{
+        api.delete(`/jobs/jobapproval/${job.id}/`)
+        .then((res) => {
+            navigate('/admin')
+        })
+    }
 
     return(
         <div className="space-y-6">
@@ -132,7 +139,7 @@ export const Admin = () => {
                                 <h3 className="font-medium text-gray-900 dark:text-white" >{job.title}</h3>
                                 <p className="text-sm text-gray-500" >{job.company} . <span>{job.location}</span></p>
                             </div>
-                            <button className="p-2 rounded-lg text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20" ><HiOutlineTrash size={18}/></button>
+                            <button className="p-2 rounded-lg text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20" onClick ={()=>deletejobhandler(job)} ><HiOutlineTrash size={18}/></button>
                         </div>
                     ))}
                 </div>

@@ -1,5 +1,5 @@
 import { useState , useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Input } from "../ui/input";
 import { Button } from "../ui/Button";
 import { Loader } from "../ui/Loader";
@@ -24,6 +24,7 @@ export const Apply = () => {
             [e.target.name] : file
         })
     }
+    const navigate = useNavigate()
     const formsubmithandler = (e) => {
       e.preventDefault()
         const Fd = new FormData()
@@ -34,9 +35,11 @@ export const Apply = () => {
         api.post(`/applis/applic/${id}/`,Fd)
         .then((res)=>{
             console.log(res.data)
+            navigate('/dashboard')
         })
         .catch((error)=>{
           console.error('Application submission failed:', error.response?.data ?? error.message)
+
         })
     }
 

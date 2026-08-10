@@ -35,6 +35,7 @@ export const JOblist =() => {
         setgetdata(res.data)
       })
     },[])
+    const joblength =  getdata.filter((job) => job.is_approved).length
 
     useEffect(() =>{
       if (searchParems.get('action') === 'create'){
@@ -48,16 +49,20 @@ export const JOblist =() => {
     const Job_types = ['Remote' , 'On-site', 'Hybrid']
     const Employment_type = ['Contrat','Permanent','Temporary']
     return (
+      
       <div className="space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-gray-500 dark:text-white">Job listing</h1>
-            <p className="text-gray-500 dark:text-gray-400 mt-1">
-              jobs not found
-            </p>
-          </div>
+        {
+          joblength === 0 &&(
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h1 className="text-gray-500 dark:text-white">Job listing</h1>
+                <p className="text-gray-500 dark:text-gray-400 mt-1">jobs not found</p>
+              </div>
           <Button onClick={() => setshowcreatemodal(true)} >+ Post a Job</Button>
-        </div>
+            </div>
+          )
+
+        }
 
         <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4">
           <div className="flex flex-col sm:flex-row gap-3">
@@ -126,7 +131,7 @@ export const JOblist =() => {
         </div>
         {loading ? (
           <Loader />
-        ) : jobs === 0 ? (
+        ) : joblength === 0 ? (
           <div className="text-center py-16">
             <p className="text-gray-500 dark:text-gray-400 text-lg">
               No jobs found
