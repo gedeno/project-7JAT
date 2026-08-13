@@ -2,11 +2,18 @@ import { useState } from "react";
 import { useTheme } from "./Context/ThemeContext";
 import api from "./auth/api";
 import { Button } from "./ui/Button";
+import { useNavigate } from "react-router-dom"
 import { HiOutlineSun ,HiOutlineMoon ,HiOutlineShieldCheck} from "react-icons/hi";
 
 
 export const Setting = () => {
     const {darkMode ,toggleTheme } = useTheme()
+    const navigate = useNavigate()
+    const logouthandler = () => {
+    localStorage.removeItem('access')
+    localStorage.removeItem('refresh')
+    navigate("/")
+  }
 
     return(
         <div className="max-w-2xl mx-auto space-y-6">
@@ -44,7 +51,7 @@ export const Setting = () => {
                 </div>
             </div>
             <div className="flex justify-end">
-                <Button variant="danger">
+                <Button variant="danger" onClick={logouthandler}>
                     Sign Out
                 </Button>
             </div>

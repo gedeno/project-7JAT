@@ -7,6 +7,8 @@ import { Button } from "../ui/Button";
 import { Modal } from "../ui/Modal";
 import { Loader } from "../ui/Loader";
 import api from "../auth/api";
+import { jwtDecode } from "jwt-decode"
+
 export const JOblist =() => {
     const loading = false
     
@@ -25,8 +27,10 @@ export const JOblist =() => {
     }
 
     const formsubmithandler = (e) =>{
+      e.preventDefault()
       api.post('/jobs/job/',formdata)
       .then((res)=>{
+        setshowcreatemodal(false)
       })
     }
     useEffect(()=>{
@@ -43,22 +47,32 @@ export const JOblist =() => {
       }
     }, [searchParems])
 
+    const token = localStorage.getItem('access')
+    const decoded = token? jwtDecode(token) : null
+    const currentUser = decoded?.user_id
+
     
 
-    const jobs = 1
+   
     const Job_types = ['Remote' , 'On-site', 'Hybrid']
     const Employment_type = ['Contrat','Permanent','Temporary']
 
     const [SelectedType , setSelectedType ] = useState('')
     const [Selectedemployment , setSelectedemployment] = useState('')
+    const [Search , setSearch] = useState('')
+    const [Myjobs , setMyjobs] = useState(false)
 
     const filteredJobs = getdata.filter((item) => {
       return (
         item.is_approved && 
         ( SelectedType === "" || item.job_type === SelectedType ) &&
-        ( Selectedemployment === "" || item.Employment_type === Selectedemployment )
+        ( Selectedemployment === "" || item.Employment_type === Selectedemployment )&&
+        ( item.title.toLowerCase().includes(Search.toLowerCase()) ||
+          item.company.toLowerCase().includes(Search.toLowerCase()) ) &&
+          (!Myjobs || item.poster === currentUser)
       )
     })
+
     return (
       
       <div className="space-y-6">
@@ -83,6 +97,7 @@ export const JOblist =() => {
                 size={20}
               />
               <input
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search jobs by title , compny..."
                 type="text"
                 className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 "
