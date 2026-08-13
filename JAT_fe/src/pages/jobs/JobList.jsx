@@ -48,6 +48,17 @@ export const JOblist =() => {
     const jobs = 1
     const Job_types = ['Remote' , 'On-site', 'Hybrid']
     const Employment_type = ['Contrat','Permanent','Temporary']
+
+    const [SelectedType , setSelectedType ] = useState('')
+    const [Selectedemployment , setSelectedemployment] = useState('')
+
+    const filteredJobs = getdata.filter((item) => {
+      return (
+        item.is_approved && 
+        ( SelectedType === "" || item.job_type === SelectedType ) &&
+        ( Selectedemployment === "" || item.Employment_type === Selectedemployment )
+      )
+    })
     return (
       
       <div className="space-y-6">
@@ -91,13 +102,14 @@ export const JOblist =() => {
                   Job Type
                 </label>
                 <select
+                  onChange={(e) => setSelectedType(e.target.value)}
                   name=""
                   id=""
                   className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm"
                 >
                   <option value="">All Types</option>
                   {Job_types.map((t) => (
-                    <option key={t}>{t}</option>
+                    <option value={t} key={t}>{t}</option>
                   ))}
                 </select>
               </div>
@@ -106,6 +118,7 @@ export const JOblist =() => {
                   Employment Type
                 </label>
                 <select
+                  onChange = {(e)=> setSelectedemployment(e.target.value)}
                   name=""
                   className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm"
                 >
@@ -143,10 +156,9 @@ export const JOblist =() => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             
-            {getdata.map((item) => (
-              item.is_approved &&(
+            {filteredJobs.map((item) => (
+              
                 <JobCard key={item.id} item={item} />
-              )
             ))}
           </div>
         )}

@@ -35,7 +35,7 @@ export const Navbar = ({onMenuToggle}) => {
   const logouthandler = () => {
     localStorage.removeItem('access')
     localStorage.removeItem('refresh')
-    navigate("/login")
+    navigate("/")
   }
   
   const userF =user?.username?.[0]

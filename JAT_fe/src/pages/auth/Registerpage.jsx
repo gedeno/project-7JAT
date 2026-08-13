@@ -32,7 +32,7 @@ export default function Regiserpage(){
         axios.post('http://127.0.0.1:8000/users/user/', formdata)
         .then((resp)=>{
             console.log(resp.data)
-            navigate('/login')
+            navigate('/')
         })
         .catch((error)=> {
             console.log(error)
@@ -57,7 +57,7 @@ export default function Regiserpage(){
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1 ">Create account</h2>
                     <p className="text-gray-500 dark:text-gray-400 mb-6">
                         Already have an account
-                        <Link className="text-primary-600 hover:text-primary-700 font-medium" to="/login"> Sign in</Link>
+                        <Link className="text-primary-600 hover:text-primary-700 font-medium" to="/"> Sign in</Link>
                     </p>
                     <form onSubmit={fromsubmithandler} className="space-y-4">
                         <div className="grid grid-cols-2 gap-4">
