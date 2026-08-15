@@ -39,7 +39,12 @@ export const Appliers = () => {
 
     return(
         <div>
-            <h1>appliers</h1>
+            <h1 className=" flex flex-col font-bold text-xl items-center justify-between mb-10">Appliers View page</h1>
+            {users.length === 0 &&(
+                <div className=" mb-2 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4 flex flex-col sm:items-center justify-between gap-3">
+                    <h1 className="font-bold text-red-500 ">no one apply this job</h1>
+                </div>)
+            }
             <div>
                 {
                     users.map((item) =>(

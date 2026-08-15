@@ -83,7 +83,7 @@ export const JOblist =() => {
                 <h1 className="text-gray-500 dark:text-white">Job listing</h1>
                 <p className="text-gray-500 dark:text-gray-400 mt-1">jobs not found</p>
               </div>
-          <Button onClick={() => setshowcreatemodal(true)} >+ Post a Job</Button>
+              <Button onClick={() => setshowcreatemodal(true)} >+ Post a Job</Button>
             </div>
           )
 

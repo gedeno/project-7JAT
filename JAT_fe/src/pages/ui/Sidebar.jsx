@@ -27,7 +27,7 @@ export const Sidebar = ({isOpen, onClose}) =>{
   const NavItems =  [ 
     {to:'/dashboard' , label : 'Dashbord' , icon : HiOutlineViewGrid },
     {to:'/joblist' , label : 'Jobslit' , icon : HiOutlineBriefcase },
-    {label : 'Messages' , icon : HiOutlineChatAlt2 },
+  
     {to:'profile', label : 'Profile' , icon : HiOutlineUser },
     {to:'/setting', label : 'Setting' , icon : HiOutlineCog },
     
