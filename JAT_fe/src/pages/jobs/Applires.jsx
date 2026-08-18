@@ -21,7 +21,7 @@ export const Appliers = () => {
             
         })
     },[])
-    const [jobappruvment , setjobappruvment] = useState({})
+    const [jobappruvment , setjobappruvment] = useState({"application":"pending"})
     const inputchangehandler = (e) =>{
         setjobappruvment({
             ...jobappruvment,
@@ -52,7 +52,6 @@ export const Appliers = () => {
                             <h1>{item.appliers.username}</h1>
                              <span className={`text-xs font-medium px-3 py-1 rounded-full capitalize ${statusBadge[item.application]}`}>
                               {item.application} </span>
-                              <h1>{item.application}</h1>
                             <form  onSubmit={(e)=>formsubmithandler(e,item)} >
                                 <select name="application" onChange={inputchangehandler}
                                 className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2.5 text-sm">

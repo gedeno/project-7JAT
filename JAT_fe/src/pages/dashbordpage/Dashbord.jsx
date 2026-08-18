@@ -8,12 +8,14 @@ import { jwtDecode } from "jwt-decode";
 import { HiOutlineBriefcase ,HiOutlineDocumentText ,HiOutlineClock,HiOutlineCheckCircle } from "react-icons/hi";
 export const Dashbord = () => {
     const [getjob , setgetjob ] = useState([])
+    
     useEffect(()=>{
         api.get('/jobs/job/')
         .then((res)=>{
             setgetjob(res.data)
         })
     },[])
+
     const joblength =  getjob.filter((job) => job.is_approved).length
     const pendingjoblength = getjob.filter((job) => !job.is_approved).length
     const alljoblength = getjob.length

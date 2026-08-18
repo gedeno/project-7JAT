@@ -80,7 +80,7 @@ export const Admin = () => {
                                         <p className="text-xs text-gray-400 mt-2">Deadline {job.deadline}</p>
                                     </div>
                                     <div className="flex gap-2 shrink-0">
-                                        <Button size="sm" onClick={() =>jobappruvalhandler(job)}><HiOutlineCheck/> Approve</Button>
+                                        <Button size="sm" onClick={() =>{jobappruvalhandler(job);window.location.reload}}><HiOutlineCheck/> Approve</Button>
                                         <Button variant="danger" size="sm"><HiOutlineX/> Reject</Button>
                                     </div>
                                 </div>
